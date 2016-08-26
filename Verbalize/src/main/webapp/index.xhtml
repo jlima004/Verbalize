@@ -1,0 +1,782 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title><ui:insert name="title">Verbalize</ui:insert></title>
+	<h:outputStylesheet name="/bootstrap/css/bootstrap.css" />
+	<h:outputStylesheet name="/css/page.css" />
+	<h:outputStylesheet name="/css/navbar.css" />
+	<h:outputStylesheet name="/css/estilo2.css" />
+	<h:outputStylesheet name="/css/style.css" />
+	<h:outputScript name="/js/jquery.min.js" />
+	<h:outputScript name="/bootstrap/js/bootstrap.js" />
+	<h:outputScript name="/js/page.js" />
+	<h:outputScript name="/js/login.js" />
+	
+  
+	<style>
+	
+		.alert.alert-warning.alert-dismissible {
+			position: absolute;
+		    z-index: 99999;
+		    width: 40%;
+		    margin-left: auto;
+		    margin-right: auto;
+		    display: block;
+		    top: 193px;
+		    list-style: none;
+		    left: 30%;
+		}
+		
+		#sidebar-wrapper {
+			top: 67px !important;
+		}
+		.navbar-brand {
+			height: 100px !important;
+		}
+		body { padding-top: 70px !important; }
+		a.btn.btn-default {
+			border-radius: 0;
+		}
+	</style>
+	
+	<style>
+				/* #####################################################################
+		   #
+		   #   Project       : Modal Login with jQuery Effects
+		   #   Author        : Rodrigo Amarante (rodrigockamarante)
+		   #   Version       : 1.0
+		   #   Created       : 07/28/2015
+		   #   Last Change   : 08/02/2015
+		   #
+		   ##################################################################### */
+		   
+		
+		#login-modal .modal-dialog {
+		    width: 350px;
+		}
+		
+		#login-modal input[type=text], input[type=password] {
+			margin-top: 10px;
+		}
+		
+		#div-login-msg,
+		#div-lost-msg,
+		#div-register-msg {
+		    border: 1px solid #dadfe1;
+		    height: 30px;
+		    line-height: 28px;
+		    transition: all ease-in-out 500ms;
+		}
+		
+		#div-login-msg.success,
+		#div-lost-msg.success,
+		#div-register-msg.success {
+		    border: 1px solid #68c3a3;
+		    background-color: #c8f7c5;
+		}
+		
+		#div-login-msg.error,
+		#div-lost-msg.error,
+		#div-register-msg.error {
+		    border: 1px solid #eb575b;
+		    background-color: #ffcad1;
+		}
+		
+		#icon-login-msg,
+		#icon-lost-msg,
+		#icon-register-msg {
+		    width: 30px;
+		    float: left;
+		    line-height: 28px;
+		    text-align: center;
+		    background-color: #dadfe1;
+		    color: #6948B5 !important;
+		    margin-right: 5px;
+		    transition: all ease-in-out 500ms;
+		}
+		
+		#icon-login-msg.success,
+		#icon-lost-msg.success,
+		#icon-register-msg.success {
+		    background-color: #68c3a3 !important;
+		}
+		
+		#icon-login-msg.error,
+		#icon-lost-msg.error,
+		#icon-register-msg.error {
+		    background-color: #eb575b !important;
+		}
+		
+		/* #########################################
+		   #    override the bootstrap configs     #
+		   ######################################### */
+		
+		.modal-backdrop.in {
+		    filter: alpha(opacity=50);
+		    opacity: .8;
+		}
+		
+		.modal-content {
+		    background-color: #ececec;
+		    border: 1px solid #bdc3c7;
+		    border-radius: 0px !important;
+		    outline: 0;
+		}
+		
+		.modal-header {
+		    min-height: 16.43px;
+		    padding: 15px 15px 15px 15px;
+		    border-bottom: 0px;
+		}
+		
+		.modal-body {
+		    position: relative;
+		    padding: 5px 15px 5px 15px;
+		}
+		
+		.modal-footer {
+		    padding: 15px 15px 15px 15px;
+		    text-align: left;
+		    border-top: 0px;
+		}
+		
+		.checkbox {
+		    margin-bottom: 0px;
+		}
+		
+		.btn {
+		    border-radius: 0px;
+		}
+		
+		.btn:focus,
+		.btn:active:focus,
+		.btn.active:focus,
+		.btn.focus,
+		.btn:active.focus,
+		.btn.active.focus {
+		    outline: none;
+		}
+		
+		.btn-lg, .btn-group-lg>.btn {
+		    border-radius: 0px !important;
+		}
+		
+		.btn-link {
+		    padding: 5px 10px 0px 0px;
+		    color: #95a5a6;
+		}
+		
+		.btn-link:hover, .btn-link:focus {
+		    color: #2c3e50;
+		    text-decoration: none;
+		}
+		
+		.glyphicon {
+		    top: 0px;
+		}
+		
+		.form-control {
+		  border-radius: 0px;
+		}
+		
+	</style>
+</h:head>
+
+<h:body id="myPage">
+	<ui:debug />
+
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-spy="affix">
+    	  <div class="container">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      	<h:link outcome="/index" value="">
+		      		<div class="navbar-brand navbar-brand-centered" />
+				</h:link>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="navbar-brand-centered">
+		    <h:form>
+		      <ul class="nav navbar-nav navbar-right">
+				<li><a href="#gallery">Notícias</a></li>
+				<li><a href="#jogos">Jogos</a></li>
+				<li><a href="#cursos">Planos</a></li>
+				<li><a href="#contato">Contato</a></li>
+				<li id="capa"><a href="#myPage">Home</a></li>
+				<li class="dropdown">
+			        
+			        <h:panelGroup rendered="#{sessaoMb.estaLogado() == false}">
+			        	<a href="#" data-toggle="modal" data-target="#login-modal">Entrar</a>
+			        </h:panelGroup>
+			        
+			        <h:link rendered="#{sessaoMb.estaLogado()}" styleClass="dropdown-toggle navfundo2">
+			        	<f:passThroughAttribute name="data-toggle" value="dropdown" />
+			        	<span class="glyphicon glyphicon-user"></span>&nbsp;
+			        	<h:outputText value="#{sessaoMb.nomeUsuarioLogado}"/>
+			        	<span class="caret"></span>
+			        </h:link>
+			       
+			       <h:panelGroup rendered="#{sessaoMb.ehAdmin()}"> 
+			        <ul class="dropdown-menu">
+			          <li><h:link outcome="/admin/admin" value="Painel Administrativo" /></li>	
+			          <hr />
+			          <li><h:commandLink action="#{sessaoMb.sair}" value="Sair"/></li>		          
+			        </ul>
+			       </h:panelGroup>
+			       
+			        <h:panelGroup rendered="#{sessaoMb.ehProfessor()}"> 
+			        <ul class="dropdown-menu">
+			          <li><h:link outcome="/professor/portalProfessor" value="Portal do Professor" /></li>
+			          <hr />
+			          <li><h:commandLink action="#{sessaoMb.sair}" value="Sair"/></li>		          
+			        </ul>
+			       </h:panelGroup>
+			       
+			        <h:panelGroup rendered="#{sessaoMb.ehAluno()}"> 
+			        <ul class="dropdown-menu">
+			          <li><h:link outcome="/aluno/portalAluno" value="Portal do Aluno" /></li>
+			          <hr />
+			          <li><h:commandLink action="#{sessaoMb.sair}" value="Sair"/></li>		          
+			        </ul>
+			       </h:panelGroup>
+			       
+				    <h:panelGroup rendered="#{sessaoMb.estaLogado() == false}">
+				        <ul class="dropdown-menu">
+				          <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>		          
+				        </ul>
+				   	</h:panelGroup>
+			        
+			    </li>	        
+		      </ul>
+		    </h:form>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
+	<header id="page-top">
+	
+	<h:panelGroup rendered="#{not empty param.msg}">
+		<div class="alert alert-warning alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h:outputText value="#{param.msg}" />
+		</div>
+	</h:panelGroup>
+	<h:messages styleClass="alert alert-warning alert-dismissible"></h:messages>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 index-video-wrapper">
+				<video autoplay="true" loop="true" id="index-video"> <source
+					src="#{resource['images:Statue_Of_Liberty.mp4']}" type="video/mp4" /></video>
+				<li id="fundo">
+					
+					<h4>Aprendendo para a vida</h4>
+					<div class="banner-info">
+						<h3>Inglês Online</h3>
+						<p>Matricúlas abertas</p>
+					</div>
+				</li>
+
+			</div>
+		</div>
+	</div>
+	</header>
+	<script type="text/javascript">
+		$('body').scrollspy({target : '.navbar'}).on('activate.bs.scrollspy', function() {
+			if ($("#capa").hasClass("active")) {
+				$(".navbar-default").css({"background-color": "rgba(136, 90, 150,0)", "border-color": "rgba(102, 45, 145, 0)"});
+				$(".navbar-nav li a").removeClass("navfundo");
+				$(".navbar-nav li a").addClass("navfundo2");
+			} if ($("#capa").hasClass("active")) {
+				 
+			} else {
+				$(".navbar-default").css({"background-color": "rgba(136, 90, 150,0.6)", "border-color": "rgba(102, 45, 145, 1)"});
+				$(".navbar-nav li a").addClass("navfundo");
+				$(".navbar-nav li a").removeClass("navfundo2");
+			}
+		});
+	</script>
+	<!-- <script>
+		$(document).ready(function(){
+		    $('.navbar').affix({target: "#myPage"}); 
+		    $(".navbar").on('affix.bs.affix', function(){
+		        alert('The navigation menu is about to be affixed - The .affix-top class is about to be replaced with the .affix class');
+		    });
+		});
+	</script> -->
+	
+	<!-- BEGIN # MODAL LOGIN -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" align="center">
+					<h:graphicImage library="images" name="Logo_inverso.png" alt="logo" />
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+				</div>
+                
+                <!-- Begin # DIV Form -->
+                <div id="div-forms">
+                
+                    <!-- Begin # Login Form -->
+                    <h:form id="login-form">
+		                <div class="modal-body">
+				    		<div id="div-login-msg">
+                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-login-msg">Digite seu nome de usuário e senha.</span>
+                            </div>
+                            
+                           
+								<label for="login_username" />
+								<h:inputText styleClass="form-control" id="login_username"
+									value="#{sessaoMb.emailForm}">
+									<f:passThroughAttribute name="placeholder" value="E-mail" />
+									<f:passThroughAttribute name="required" value="true" />
+								</h:inputText>
+							
+							
+							
+								<label for="login_password" />								
+								<h:inputSecret styleClass="form-control" id="login_password"
+									value="#{sessaoMb.senhaForm}">
+									<f:passThroughAttribute name="placeholder" value="Senha" />
+									<f:passThroughAttribute name="required" value="true" />
+								</h:inputSecret>								
+							
+                            
+        		    	</div>
+				        <div class="modal-footer">
+				        
+				        	<div>
+					        	<h:commandButton styleClass="btn btn-primary btn-lg btn-block" value="Login"
+								action="#{sessaoMb.entrar}" />
+				        	</div>
+                            
+				    	    <div>
+                                <h:commandButton id="login_lost_btn" type="button" styleClass="btn btn-link" 
+                                value="Esqueceu sua Senha?" />
+                                <h:button styleClass="btn btn-link" 
+                                outcome="/cadastro" value="Registre-se" />
+                            </div>
+				        </div>
+                    </h:form>
+                    <!-- End # Login Form -->
+                    
+                    <!-- Begin | Lost Password Form -->
+                    <form id="lost-form" style="display:none;">
+    	    		    <div class="modal-body">
+		    				<div id="div-lost-msg">
+                                <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-lost-msg">Digite seu e-mail.</span>
+                            </div>
+		    				<input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required="true" />
+            			</div>
+		    		    <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
+                            </div>
+                            <div>
+                                <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <h:button styleClass="btn btn-link" 
+                                outcome="/cadastro" value="Registre-se" />
+                            </div>
+		    		    </div>
+                    </form>
+                    <!-- End | Lost Password Form -->
+                    
+                </div>
+                <!-- End # DIV Form -->
+                
+			</div>
+		</div>
+	</div>
+    <!-- END # MODAL LOGIN -->
+	
+<div class="content-wrapper">
+	
+	<!-- Container (gallery Section) -->
+	  <div class="gallery section-primary" id="gallery">
+		<div class="container">
+			<div class="row">
+
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h2 id="secaoTitulo">Notícias</h2>
+						<hr class="star-primary" />
+					</div>
+				</div>
+
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="sorting pull-left">
+						<div class="filter pull-left filimg" data-filter="all">Mostrar
+							Tudo</div>
+						<div class="filter pull-left filimg" data-filter=".category-1">Inglês</div>
+						<div class="filter pull-left filimg" data-filter=".category-2">Espanhol</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-sm-12 col-xs-12 slideanim">
+					<div class="galleryimg" id="galleryimg">
+						<div class="grid mix category-2 col-md-4 col-sm-6 col-xs-6"
+							data-myorder="1">
+							<figure class="effect-Beauty"> <h:graphicImage
+								library="images" name="noticia1.png" alt="img13" /> <figcaption>
+
+							<p>Conheça a metodologia dos nossos cursos infantis.</p>
+							<a href="#">View more</a> </figcaption> </figure>
+						</div>
+						<div class="grid mix category-1 col-md-4 col-sm-6 col-xs-6"
+							data-myorder="2">
+							<figure class="effect-Beauty"> <h:graphicImage
+								library="images" name="noticia2.png" alt="img13" /> <figcaption>
+
+							<p>Nove curiosidades sobre o Reino Unido.</p>
+							<a href="#">View more</a> </figcaption> </figure>
+						</div>
+						<div class="grid mix category-1 col-md-4 col-sm-6 col-xs-6"
+							data-myorder="3">
+							<figure class="effect-Beauty"> <h:graphicImage
+								library="images" name="noticia3.png" alt="img13" /> <figcaption>
+
+							<p>Veja um gráfico com os idiomas do mundo.</p>
+							<a href="#">View more</a> </figcaption> </figure>
+						</div>
+						<div class="grid mix category-2 col-md-4 col-sm-6 col-xs-6"
+							data-myorder="4">
+							<figure class="effect-Beauty"> <h:graphicImage
+								library="images" name="noticia4.png" alt="img13" /> <figcaption>
+
+							<p>Sasha lança livro sobre sociedade secreta</p>
+							<a href="#">View more</a> </figcaption> </figure>
+						</div>
+						<div class="grid mix category-2 col-md-4 col-sm-6 col-xs-6"
+							data-myorder="5">
+							<figure class="effect-Beauty"> <h:graphicImage
+								library="images" name="noticia5.png" alt="img13" /> <figcaption>
+
+							<p>Inglesa cheira um brinco</p>
+							<a href="#">View more</a> </figcaption> </figure>
+						</div>
+						<div class="grid mix category-1 col-md-4 col-sm-6 col-xs-6"
+							data-myorder="6">
+							<figure class="effect-Beauty"> <h:graphicImage
+								library="images" name="noticia6.png" alt="img13" /> <figcaption>
+
+							<p>Metallica</p>
+							<a href="#">View more</a> </figcaption> </figure>
+						</div>
+						<div class="grid mix category-2 col-md-4 col-sm-6 col-xs-6"
+							data-myorder="7">
+							<figure class="effect-Beauty"> <h:graphicImage
+								library="images" name="noticia7.png" alt="img13" /> <figcaption>
+
+							<p>Nova saga do cavaleiro das trevas</p>
+							<a href="#">View more</a> </figcaption> </figure>
+						</div>
+						<div class="grid mix category-1 col-md-4 col-sm-6 col-xs-6"
+							data-myorder="8">
+							<figure class="effect-Beauty"> <h:graphicImage
+								library="images" name="noticia8.png" alt="img13" /> <figcaption>
+
+							<p>Pense fora da caixa</p>
+							<a href="#">View more</a> </figcaption> </figure>
+						</div>
+						<div class="grid mix category-1 col-md-4 col-sm-6 col-xs-6"
+							data-myorder="9">
+							<figure class="effect-Beauty"> <h:graphicImage
+								library="images" name="noticia9.png" alt="img13" /> <figcaption>
+
+							<p>Nova espanção para The Witcher 3 Wild Hunt</p>
+							<a href="#">View more</a> </figcaption> </figure>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+	<script>
+		$(function() {
+			$('#galleryimg').mixItUp();
+		});
+	</script>
+		
+	<!-- Container (jogos Section) -->
+	<div class="section-success gallery" id="jogos">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2>Jogos</h2>
+					<hr class="star-light" />
+				</div>
+			</div>
+			<br />
+			<div class="row slideanim">
+
+				<div class="carousel slide col-xs-offset-1 col-xs-10" id="carrosel">
+
+					<!-- Indicadores -->
+					<ol class="carousel-indicators">
+						<li data-target="#carrosel" data-slide-to="0" class="active"></li>
+						<li data-target="#carrosel" data-slide-to="1"></li>
+						<li data-target="#carrosel" data-slide-to="2"></li>
+						<li data-target="#carrosel" data-slide-to="3"></li>
+					</ol>
+
+					<div class="carousel-inner">
+						<div class="item active">
+							<a href="Layout/index.xhtml">
+								<h:graphicImage library="images" name="diveringles1.png" alt="img1" class="carrosel" />
+							</a>
+							<div class="carousel-caption">
+								<h4>Diveringlês</h4>
+								<p>Diveringlês é um web site gratuito de jogos didaticos
+									visando o aprendizado da lingua inglesa, lançado em 2015.</p>
+							</div>
+						</div>
+
+						<div class="item">
+							<a href="quizroom/index1.xhtml">
+								<h:graphicImage library="images" name="quizroom1.png" alt="img1" class="carrosel" />
+							</a>
+							<div class="carousel-caption">
+								<h4>Quizroom</h4>
+								<p>Divirta-se com o Quizroom um quiz sobre os objetos do
+									querto.</p>
+							</div>
+						</div>
+
+						<div class="item">
+							<a href="Layout/index.xhtml">
+								<h:graphicImage library="images" name="diveringles2.png" alt="img1" class="carrosel" />
+							</a>
+							<div class="carousel-caption">
+								<h4>Diveringlês</h4>
+								<p>Diveringlês é um web site gratuito de jogos didaticos
+									visando o aprendizado da lingua inglesa, lançado em 2015.</p>
+							</div>
+						</div>
+
+						<div class="item">
+							<a href="quizroom/index1.xhtml">
+								<h:graphicImage library="images" name="quizroom2.png" alt="img1" class="carrosel" />
+							</a>
+							<div class="carousel-caption">
+								<h4>Quizroom</h4>
+								<p>Divirta-se com o Quizroom um quiz sobre os objetos do
+									querto.</p>
+							</div>
+						</div>
+
+						<!-- Controles -->
+						<span data-target="#carrosel" class="carousel-control left"
+							data-slide="prev"><span
+							class="glyphicon glyphicon-chevron-left"></span>
+							<span class="sr-only">Anterior</span></span>
+						<span data-target="#carrosel" class="carousel-control right"
+							data-slide="next"><span
+							class="glyphicon glyphicon-chevron-right"></span>
+							<span class="sr-only">Próximo</span></span>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		</div>
+		
+	<!-- Container (Pricing Section) -->
+	<div class="section-primary gallery" id="cursos">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2>Planos</h2>
+					<hr class="star-primary" />
+				</div>
+			</div>
+			<br />
+	  <div class="row slideanim">
+	    <div class="col-sm-4 col-xs-12">
+	      <div class="panel panel-default text-center">
+	        <div class="panel-heading">
+	          <h1>1 Mês</h1>
+	        </div>
+	        <div class="panel-body">
+	          <p><strong>20</strong> Lorem</p>
+	          <p><strong>15</strong> Ipsum</p>
+	          <p><strong>5</strong> Dolor</p>
+	        </div>
+	        <div class="panel-footer">
+	          <h3>R$ 19,00</h3>
+	          <h4>por mês</h4>
+	          <button class="btn btn-lg">Assinar</button>
+	        </div>
+	      </div>      
+	    </div>     
+	    <div class="col-sm-4 col-xs-12">
+	      <div class="panel panel-default text-center">
+	        <div class="panel-heading">
+	          <h1>6 Meses</h1>
+	        </div>
+	        <div class="panel-body">
+	          <p><strong>50</strong> Lorem</p>
+	          <p><strong>25</strong> Ipsum</p>
+	          <p><strong>10</strong> Dolor</p>
+	        </div>
+	        <div class="panel-footer">
+	          <h3>R$ 14,90</h3>
+	          <h4>por mês</h4>
+	          <button class="btn btn-lg">Assinar</button>
+	        </div>
+	      </div>      
+	    </div>       
+	    <div class="col-sm-4 col-xs-12">
+	      <div class="panel panel-default text-center">
+	        <div class="panel-heading">
+	          <h1>Anual</h1>
+	        </div>
+	        <div class="panel-body">
+	          <p><strong>100</strong> Lorem</p>
+	          <p><strong>50</strong> Ipsum</p>
+	          <p><strong>25</strong> Dolor</p>
+	        </div>
+	        <div class="panel-footer">
+	          <h3>R$ 10,90</h3>
+	          <h4>por mês</h4>
+	          <button class="btn btn-lg">Assine</button>
+	        </div>
+	      </div>      
+	    </div>    
+	  </div>
+	
+	</div>
+	</div>
+	
+	<!-- Container (Social Section) -->
+	  <div class="section-success gallery" id="social">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2>Redes Sociais</h2>
+					<hr class="star-light" />
+				</div>
+			</div>
+			<br />
+			<center>
+				<div class="row slideanim">
+					<div class="col-md-4">
+						<div class="botaoSocial" id="facebook"></div>
+					</div>
+					<div class="col-md-4">
+						<div class="botaoSocial" id="twitter"></div>
+					</div>
+					<div class="col-md-4">
+						<div class="botaoSocial" id="google"></div>
+					</div>
+				</div>
+			</center>
+		</div>
+		</div>
+	
+	<!-- Container (Contato Section) -->
+	<div class="section-primary gallery" id="contato">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2>Contato</h2>
+					<hr class="star-primary" />
+				</div>
+			</div>
+			<br />
+			<div class="row slideanim">
+				<div class="col-lg-8 col-lg-offset-2">
+
+					<form id="cadForm" action="cadInicial?cmd=salvar" method="post"
+						class="col-md-12">
+
+						<div class="form-group col-md-8">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+								<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" />
+							</div>
+						</div>
+
+						<div class="form-group col-md-4">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span> 
+									<input
+									type="text" id="telefone" class="form-control" name="telefone"
+									placeholder="Telefone" />
+							</div>
+						</div>
+
+						<div class="form-group col-md-8">
+							<div class="input-group">
+								<span class="input-group-addon">@</span> <input type="text"
+									class="form-control" id="email" name="email"
+									placeholder="Muriel@xrato.com" />
+							</div>
+						</div>
+
+						<div class="form-group col-md-12">
+							<label for="comment">Duvidas</label>
+							<textarea class="form-control" rows="5" name="duvidas"
+								id="comment"></textarea>
+						</div>
+						<div class="form-group col-md-12">
+							<button type="submit" value="salvar" class="btn btn-success">Enviar</button>
+							<button type="reset" value="Limpar" class="btn btn-primary"
+								style="padding: 6px 12px !important;">Limpar</button>
+						</div>
+					</form>
+
+
+				</div>
+			</div>
+		</div>
+		</div>
+	
+	<!-- Rodapé -->
+	<footer class="container-fluid text-center">
+		<div class="col-sm-4 col-xs-12">
+			<ul style="margin: 0px; padding: 0px; line-height: 0; border: medium none;">
+				<h4>Desenvolvedores</h4>
+
+				<li><span class="glyphicon glyphicon-hand-right"></span>
+					Jefferson Lima</li>
+				<li style="margin-top: -15px;"><span class="glyphicon glyphicon-hand-right"></span>
+					Patrick Ramos</li>
+			</ul>
+		</div>
+		<div class="col-sm-4 col-xs-12">
+	  <a href="#myPage" title="Topo">
+	    <span class="glyphicon glyphicon-chevron-up"></span>
+	  </a>
+	  <p>Informática Para Internet <a href="http://sc.senai.br/" title="Visite o SENAI">sc.senai.br</a></p>
+	  	</div>
+	  	<div class="col-sm-4 col-xs-12" id="logo_i">
+	  		<div class="logo_inverso"></div>
+	  	</div>
+	</footer>
+
+</div>
+	
+</h:body>
+
+</html>
