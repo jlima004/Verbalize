@@ -3,7 +3,9 @@ package br.verbalize.sc.mb;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
 import br.verbalize.sc.model.Pessoa;
@@ -41,7 +43,7 @@ public class PessoaMb {
 	
 	public List<Pessoa> getListaPessoas() {
 		if(listaPessoas == null) {
-			listaPessoas = pessoaRN.listarPessoas();
+			listaPessoas = pessoaRN.listar();
 		}
 		return listaPessoas;
 	}
@@ -64,17 +66,27 @@ public class PessoaMb {
 		pessoa = pessoaRN.buscarPorId(editarId);
 	}
 	
-	public String excluir(String id) {
-		Long idExcluir = Long.parseLong(id);
-		pessoaRN.excluir(idExcluir);
+	public String excluir() {
+		//Long idExcluir = Long.parseLong(id);
+		pessoaRN.excluir(pessoa);
 		listaPessoas = null;
 		return "";
 	}
 	
 	public String salvar() {
-		pessoaRN.salvar(pessoa);
-		//listaPessoas = null;
-		return "/admin/pessoaList";
+		try {
+			pessoaRN.salvar(pessoa);
+			return "/admin/pessoaList";
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", e
+							.getMessage()));
+		}
+		return "";
+		
+		
 	}
 	
 }

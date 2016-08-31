@@ -16,7 +16,7 @@ public class TurmaRN {
 	}
 	
 	public List<Turma> listar() {
-		return dao.Listar();
+		return dao.listar();
 	}
 	 
 	public void salvar(Turma turma) throws IllegalArgumentException,Exception {
@@ -39,8 +39,8 @@ public class TurmaRN {
 		return dao.buscarPorId(id);
 	}
 	
-	public void excluir(Long id) {
-		dao.excluir(id);
+	public void excluir(Turma turma) {
+		dao.excluir(turma);
 	}
 	
 }

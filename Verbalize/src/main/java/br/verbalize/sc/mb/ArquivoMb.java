@@ -84,7 +84,7 @@ public class ArquivoMb {
 		
 		Long idArquivo = (Long) event.getComponent().getAttributes().get("idArquivo");
 		
-		Arquivo arq = arquivoRN.buscarArquivoPorId(idArquivo);
+		Arquivo arq = arquivoRN.buscarPorId(idArquivo);
 		
 		UploadUtil.removerArquivo(arq.getNome());
 		arquivoRN.excluir(arq);
@@ -106,6 +106,9 @@ public class ArquivoMb {
 			return "/ava?idturma=" + turma.getId().toString() + "&faces-redirect=true";
 			
 		} catch (IOException e) {
+			e.printStackTrace();
+			return "";
+		} catch (Exception e) {
 			e.printStackTrace();
 			return "";
 		}

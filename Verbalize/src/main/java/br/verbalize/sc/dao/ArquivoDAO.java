@@ -6,12 +6,9 @@ import javax.persistence.Query;
 
 import br.verbalize.sc.model.Arquivo;
 
-public class ArquivoDAO extends DAO {
-
-	public void salvar(Arquivo arquivo) {
-		getEM().merge(arquivo);
-	}
-
+public class ArquivoDAO extends DAO<Arquivo> {
+	
+	@SuppressWarnings("unchecked")
 	public List<Arquivo> listarArquivosPorTurma(Long turmaId) {
 		Query query = getEM().createQuery(
 				"From Arquivo i Where i.turma.id = :turmaId ", Arquivo.class);
@@ -19,13 +16,14 @@ public class ArquivoDAO extends DAO {
 		return query.getResultList();
 	}
 	
-	public Arquivo buscarArquivoPorId(Long idArquivo) {
+	public Arquivo buscarPorId(long idArquivo) {
 		return getEM().find(Arquivo.class, idArquivo);
 	}
+
 	
-	public void excluir(Arquivo arquivo) {
-		getEM().remove(arquivo);
+	public List<Arquivo> listar() {
+		return null;
 	}
-	
+
 	
 }

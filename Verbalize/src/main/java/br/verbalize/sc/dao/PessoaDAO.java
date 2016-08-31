@@ -8,32 +8,25 @@ import javax.persistence.Query;
 import br.verbalize.sc.model.Perfil;
 import br.verbalize.sc.model.Pessoa;
 
-public class PessoaDAO extends DAO {
+public class PessoaDAO extends DAO<Pessoa> {
 
-	public void salvar(Pessoa pessoa) {
-		getEM().merge(pessoa);
-	}
-
-	public Pessoa buscarPorId(Long id) {
+	public Pessoa buscarPorId(long id) {
 		return getEM().find(Pessoa.class, id);
 	}
 
-	public List<Pessoa> listarPessoas() {
+	@SuppressWarnings("unchecked")
+	public List<Pessoa> listar() {
 		Query query = getEM().createQuery("From Pessoa", Pessoa.class);
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Pessoa> listarProfessores() {
 		Query query = getEM().createQuery(
 				"From Pessoa u Where u.perfil = :perfil", Pessoa.class);
 		query.setParameter("perfil", Perfil.PROFESSOR);
 
 		return query.getResultList();
-	}
-
-	public void excluir(Long id) {
-		Pessoa pessoa = getEM().getReference(Pessoa.class, id);
-		getEM().remove(pessoa);
 	}
 	
 	public Pessoa buscaPorEmail(String email) {
@@ -48,5 +41,5 @@ public class PessoaDAO extends DAO {
 			return null;
 		}
 	}
-	
+
 }

@@ -138,9 +138,9 @@ public class TurmaMb {
 		turma = turmaRN.buscaPorId(editarId);
 	}*/
 
-	public String excluir(String idParam) {
-		Long id = Long.parseLong(idParam);
-		turmaRN.excluir(id);
+	public String excluir() {
+		//Long id = Long.parseLong(idParam);
+		turmaRN.excluir(turma);
 		listaTurma = null;
 		return "";
 	}
@@ -173,7 +173,7 @@ public class TurmaMb {
 		
 		Long idArquivo = (Long) event.getComponent().getAttributes().get("idArquivo");
 		
-		Arquivo arq = arquivoRN.buscarArquivoPorId(idArquivo);
+		Arquivo arq = arquivoRN.buscarPorId(idArquivo);
 		
 		UploadUtil.removerArquivo(arq.getNome());
 		arquivoRN.excluir(arq);

@@ -13,24 +13,30 @@ public class PessoaRN {
 		dao = new PessoaDAO();
 	}
 	
-	public void salvar(Pessoa pessoa) {
-		dao.salvar(pessoa);
+	public void salvar(Pessoa pessoa) throws Exception {
+		try {
+			dao.salvar(pessoa);
+		} catch (Exception e) {
+			throw new Exception("Houve um erro na comunicação com "
+					+ "o banco de dados. Contate o administrador do site.");
+		}
+		
 	}
 	
 	public Pessoa buscarPorId(Long id) {
 		return dao.buscarPorId(id);
 	}
 	
-	public List<Pessoa> listarPessoas() {
-		return dao.listarPessoas();
+	public List<Pessoa> listar() {
+		return dao.listar();
 	}
 	
 	public List<Pessoa> ListarProfessores() {
 		return dao.listarProfessores();
 	}
 	
-	public void excluir(Long id) {
-		dao.excluir(id);
+	public void excluir(Pessoa pessoa) {
+		dao.excluir(pessoa);
 	}
 	
 	public Pessoa buscarPorEmail(String email) {

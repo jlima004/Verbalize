@@ -13,16 +13,22 @@ public class ArquivoRN {
 		dao = new ArquivoDAO();
 	}
 	
-	public void adicionar(Arquivo arquivo) {
-		dao.salvar(arquivo);
+	public void adicionar(Arquivo arquivo) throws Exception {
+		try {
+			dao.salvar(arquivo);
+		} catch (Exception e) {
+			throw new Exception("Houve um erro na comunicação com "
+					+ "o banco de dados. Contate o administrador do site.");
+		}
+		
 	}
 	
 	public List<Arquivo> listarArquivosPorTurma(Long idTurma) {
 		return dao.listarArquivosPorTurma(idTurma);
 	}
 	
-	public Arquivo buscarArquivoPorId(Long idArquivo) {
-		return dao.buscarArquivoPorId(idArquivo);
+	public Arquivo buscarPorId(long idArquivo) {
+		return dao.buscarPorId(idArquivo);
 	}
 	
 	public void excluir(Arquivo arquivo) {

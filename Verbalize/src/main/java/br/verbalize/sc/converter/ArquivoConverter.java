@@ -22,7 +22,7 @@ public class ArquivoConverter implements Converter {
 		
 		Long id = Long.parseLong(valor);
 		ArquivoRN arquivoRN = new ArquivoRN();
-		Arquivo arquivo = arquivoRN.buscarArquivoPorId(id);
+		Arquivo arquivo = arquivoRN.buscarPorId(id);
 		return arquivo;
 	}
 	

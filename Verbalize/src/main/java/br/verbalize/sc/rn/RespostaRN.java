@@ -13,20 +13,26 @@ public class RespostaRN {
 		dao = new RespostaDAO();
 	}
 	
-	public void salvar(Resposta resposta) {
-		dao.salvar(resposta);
+	public void salvar(Resposta resposta) throws Exception {
+		try {
+			dao.salvar(resposta);
+		} catch (Exception e) {
+			throw new Exception("Houve um erro na comunicação com "
+					+ "o banco de dados. Contate o administrador do site.");
+		}
+		
 	}
 	
-	public Resposta buscarPorId(Long id) {
-		return dao.buscarPorid(id);
+	public Resposta buscarPorId(long id) {
+		return dao.buscarPorId(id);
 	}
 	
-	public List<Resposta> listarRespostas() {
-		return dao.listarRespostas();
+	public List<Resposta> listar() {
+		return dao.listar();
 	}
 	
-	public void excluir(Long id) {
-		dao.excluir(id);
+	public void excluir(Resposta resposta) {
+		dao.excluir(resposta);
 	}
 
 }

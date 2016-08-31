@@ -3,7 +3,9 @@ package br.verbalize.sc.mb;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
 import br.verbalize.sc.model.Resposta;
@@ -41,7 +43,7 @@ public class RespostaMb {
 
 	public List<Resposta> getListaRespostas() {
 		if(listaRespostas == null) {
-			listaRespostas = respostaRN.listarRespostas();
+			listaRespostas = respostaRN.listar();
 		}
 		return listaRespostas;
 	}
@@ -57,17 +59,27 @@ public class RespostaMb {
 		resposta = respostaRN.buscarPorId(editarId);
 	}
 	
-	public String excluir(String id) {
-		Long idExcluir = Long.parseLong(id);
-		respostaRN.excluir(idExcluir);
+	public String excluir() {
+		//Long idExcluir = Long.parseLong(id);
+		respostaRN.excluir(resposta);
 		listaRespostas = null;
 		return "";
 	}
 	
 	public String salvar() {
-		respostaRN.salvar(resposta);
-		listaRespostas = null;
+		try {
+			respostaRN.salvar(resposta);
+			listaRespostas = null;
+			return "";
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", e
+							.getMessage()));
+		}
 		return "";
+		
 	}
 	
 	
