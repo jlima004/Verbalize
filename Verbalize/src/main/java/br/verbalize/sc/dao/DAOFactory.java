@@ -6,6 +6,7 @@ public class DAOFactory {
 	private static ArquivoDAO arquivoDAO;
 	private static PessoaDAO pessoaDAO;
 	private static RespostaDAO respostaDAO;
+	private static AmbienteDAO ambienteDAO;
 	
 	public static TurmaDAO getTurmaDAO() {
 		if (turmaDAO == null) {
@@ -34,6 +35,17 @@ public class DAOFactory {
 		}
 		return respostaDAO;
 	}
+
+	public static AmbienteDAO getAmbienteDAO() {
+		if (ambienteDAO == null) {
+			ambienteDAO = new AmbienteDAO();
+		}
+		return ambienteDAO;
+	}
+	
+	
+	
+	
 	
 	
 }
