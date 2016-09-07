@@ -15,8 +15,17 @@ public class AmbienteDAO extends DAO<Ambiente> {
 
 	@SuppressWarnings("unchecked")
 	public List<Ambiente> listar() {
-		Query query = getEM().createQuery("From Ambiente", Ambiente.class);
+		Query query = getEM().createQuery("SELECT a FROM Ambiente a", Ambiente.class);
 		return query.getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Ambiente> listarParaAutoComplete(String busca) {
+		Query query = getEM().createQuery("SELECT a FROM Ambiente a WHERE a.nome LIKE :nome");
+		query.setParameter("nome", "%"+busca+"%");
+		return query.getResultList();
+	}
+	
+	
 	
 }
