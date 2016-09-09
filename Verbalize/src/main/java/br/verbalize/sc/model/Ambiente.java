@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 @Entity
 public class Ambiente {
@@ -14,7 +13,7 @@ public class Ambiente {
 	private long id;
 	@Column(length=100)
 	private String nome;
-	@Lob
+	@Column(length=100)
 	private String descricao;
 	private String tipo;
 	private int capacidade;

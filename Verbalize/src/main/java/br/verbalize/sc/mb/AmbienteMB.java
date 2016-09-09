@@ -2,9 +2,10 @@ package br.verbalize.sc.mb;
 
 import java.util.List;
 
-import javax.annotation.ManagedBean;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -20,7 +21,7 @@ public class AmbienteMB {
 	private List<Ambiente> listaAmbientes;
 
 	@PostConstruct
-	public void depoisDeConstruir() {
+	public void init() {
 		ambiente = new Ambiente();
 		ambienteRN = new AmbienteRN();
 	}
@@ -59,7 +60,7 @@ public class AmbienteMB {
 			listaAmbientes = null;
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ambiente cadastrado com sucesso!", "");
 			FacesContext.getCurrentInstance().addMessage(null, message);
-			return "listarAmbientes";
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -69,11 +70,11 @@ public class AmbienteMB {
 	}
 	
 	public String listar() {
-		return "listarAmbientes";
+		return "/adimin/listarAmbientes";
 	}
 	
 	public String editar() {
-		return "cadastroAmbiente";
+		return "/adimin/cadastroAmbiente";
 	}
 	
 	public String excluir() {
@@ -85,7 +86,7 @@ public class AmbienteMB {
 	
 	public String novo() {
 		ambiente = new Ambiente();
-		return "cadastroAmbiente";
+		return "/adimin/cadastroAmbiente";
 	}
 
 }
