@@ -7,6 +7,7 @@ public class DAOFactory {
 	private static PessoaDAO pessoaDAO;
 	private static RespostaDAO respostaDAO;
 	private static AmbienteDAO ambienteDAO;
+	private static RegraDAO regraDAO;
 	
 	public static TurmaDAO getTurmaDAO() {
 		if (turmaDAO == null) {
@@ -42,9 +43,13 @@ public class DAOFactory {
 		}
 		return ambienteDAO;
 	}
-	
-	
-	
+
+	public static RegraDAO getRegraDAO() {
+		if (regraDAO == null) {
+			regraDAO = new RegraDAO();
+		}
+		return regraDAO;
+	}
 	
 	
 	
