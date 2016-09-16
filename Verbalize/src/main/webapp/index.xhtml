@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,7 +19,7 @@
 	<h:outputScript name="/js/jquery.min.js" />
 	<h:outputScript name="/bootstrap/js/bootstrap.js" />
 	<h:outputScript name="/js/page.js" />
-	<h:outputScript name="/js/login.js" />
+<!-- 	<h:outputScript name="/js/login.js" /> -->
 	
   
 	<style>
@@ -218,50 +218,7 @@
 				<li><a href="#cursos">Planos</a></li>
 				<li><a href="#contato">Contato</a></li>
 				<li id="capa"><a href="#myPage">Home</a></li>
-				<li class="dropdown">
-			        
-			        <h:panelGroup rendered="#{sessaoMb.estaLogado() == false}">
-			        	<a href="#" data-toggle="modal" data-target="#login-modal">Entrar</a>
-			        </h:panelGroup>
-			        
-			        <h:link rendered="#{sessaoMb.estaLogado()}" styleClass="dropdown-toggle navfundo2">
-			        	<f:passThroughAttribute name="data-toggle" value="dropdown" />
-			        	<span class="glyphicon glyphicon-user"></span>&nbsp;
-			        	<h:outputText value="#{sessaoMb.nomeUsuarioLogado}"/>
-			        	<span class="caret"></span>
-			        </h:link>
-			       
-			       <h:panelGroup rendered="#{sessaoMb.ehAdmin()}"> 
-			        <ul class="dropdown-menu">
-			          <li><h:link outcome="/admin/admin" value="Painel Administrativo" /></li>	
-			          <hr />
-			          <li><h:commandLink action="#{sessaoMb.sair}" value="Sair"/></li>		          
-			        </ul>
-			       </h:panelGroup>
-			       
-			        <h:panelGroup rendered="#{sessaoMb.ehProfessor()}"> 
-			        <ul class="dropdown-menu">
-			          <li><h:link outcome="/professor/portalProfessor" value="Portal do Professor" /></li>
-			          <hr />
-			          <li><h:commandLink action="#{sessaoMb.sair}" value="Sair"/></li>		          
-			        </ul>
-			       </h:panelGroup>
-			       
-			        <h:panelGroup rendered="#{sessaoMb.ehAluno()}"> 
-			        <ul class="dropdown-menu">
-			          <li><h:link outcome="/aluno/portalAluno" value="Portal do Aluno" /></li>
-			          <hr />
-			          <li><h:commandLink action="#{sessaoMb.sair}" value="Sair"/></li>		          
-			        </ul>
-			       </h:panelGroup>
-			       
-				    <h:panelGroup rendered="#{sessaoMb.estaLogado() == false}">
-				        <ul class="dropdown-menu">
-				          <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>		          
-				        </ul>
-				   	</h:panelGroup>
-			        
-			    </li>	        
+				
 		      </ul>
 		    </h:form>
 		    </div><!-- /.navbar-collapse -->
@@ -269,14 +226,6 @@
 		</nav>
 
 	<header id="page-top">
-	
-	<h:panelGroup rendered="#{not empty param.msg}">
-		<div class="alert alert-warning alert-dismissible">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h:outputText value="#{param.msg}" />
-		</div>
-	</h:panelGroup>
-	<h:messages styleClass="alert alert-warning alert-dismissible"></h:messages>
 	
 	<div class="container-fluid">
 		<div class="row">
@@ -311,102 +260,6 @@
 			}
 		});
 	</script>
-	<!-- <script>
-		$(document).ready(function(){
-		    $('.navbar').affix({target: "#myPage"}); 
-		    $(".navbar").on('affix.bs.affix', function(){
-		        alert('The navigation menu is about to be affixed - The .affix-top class is about to be replaced with the .affix class');
-		    });
-		});
-	</script> -->
-	
-	<!-- BEGIN # MODAL LOGIN -->
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header" align="center">
-					<h:graphicImage library="images" name="Logo_inverso.png" alt="logo" />
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
-				</div>
-                
-                <!-- Begin # DIV Form -->
-                <div id="div-forms">
-                
-                    <!-- Begin # Login Form -->
-                    <h:form id="login-form">
-		                <div class="modal-body">
-				    		<div id="div-login-msg">
-                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                <span id="text-login-msg">Digite seu nome de usuário e senha.</span>
-                            </div>
-                            
-                           
-								<label for="login_username" />
-								<h:inputText styleClass="form-control" id="login_username"
-									value="#{sessaoMb.emailForm}">
-									<f:passThroughAttribute name="placeholder" value="E-mail" />
-									<f:passThroughAttribute name="required" value="true" />
-								</h:inputText>
-							
-							
-							
-								<label for="login_password" />								
-								<h:inputSecret styleClass="form-control" id="login_password"
-									value="#{sessaoMb.senhaForm}">
-									<f:passThroughAttribute name="placeholder" value="Senha" />
-									<f:passThroughAttribute name="required" value="true" />
-								</h:inputSecret>								
-							
-                            
-        		    	</div>
-				        <div class="modal-footer">
-				        
-				        	<div>
-					        	<h:commandButton styleClass="btn btn-primary btn-lg btn-block" value="Login"
-								action="#{sessaoMb.entrar}" />
-				        	</div>
-                            
-				    	    <div>
-                                <h:commandButton id="login_lost_btn" type="button" styleClass="btn btn-link" 
-                                value="Esqueceu sua Senha?" />
-                                <h:button styleClass="btn btn-link" 
-                                outcome="/cadastro" value="Registre-se" />
-                            </div>
-				        </div>
-                    </h:form>
-                    <!-- End # Login Form -->
-                    
-                    <!-- Begin | Lost Password Form -->
-                    <form id="lost-form" style="display:none;">
-    	    		    <div class="modal-body">
-		    				<div id="div-lost-msg">
-                                <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                <span id="text-lost-msg">Digite seu e-mail.</span>
-                            </div>
-		    				<input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required="true" />
-            			</div>
-		    		    <div class="modal-footer">
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
-                            </div>
-                            <div>
-                                <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
-                                <h:button styleClass="btn btn-link" 
-                                outcome="/cadastro" value="Registre-se" />
-                            </div>
-		    		    </div>
-                    </form>
-                    <!-- End | Lost Password Form -->
-                    
-                </div>
-                <!-- End # DIV Form -->
-                
-			</div>
-		</div>
-	</div>
-    <!-- END # MODAL LOGIN -->
 	
 <div class="content-wrapper">
 	

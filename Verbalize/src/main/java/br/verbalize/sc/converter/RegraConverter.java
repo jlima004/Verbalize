@@ -20,8 +20,10 @@ public class RegraConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-
-		return null;
+		System.out.println("Teste");
+		Regra regra = (Regra) value;
+		System.out.println("Teste1");
+		return String.valueOf(regra.getId());
 	}
 
 }
