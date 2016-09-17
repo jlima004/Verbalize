@@ -1,4 +1,4 @@
-/*package br.verbalize.sc.mb;
+package br.verbalize.sc.mb;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -96,4 +96,4 @@ public class SessaoMb {
 
 	}
 
-}*/
+}

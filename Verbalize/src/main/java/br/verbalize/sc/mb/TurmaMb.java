@@ -6,7 +6,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
+//import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 //import javax.faces.event.ComponentSystemEvent;
@@ -21,7 +22,7 @@ import br.verbalize.sc.model.Pessoa;
 import br.verbalize.sc.model.Turma;
 import br.verbalize.sc.rn.TurmaRN;
 
-@ViewScoped
+@SessionScoped
 @ManagedBean(name="turmaMb")
 public class TurmaMb {
 	private List<Turma> listaTurma;

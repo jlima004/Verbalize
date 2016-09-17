@@ -60,7 +60,7 @@ public class AmbienteMB {
 			listaAmbientes = null;
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ambiente cadastrado com sucesso!", "");
 			FacesContext.getCurrentInstance().addMessage(null, message);
-			return null;
+			return "/admin/listarAmbientes";
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -70,11 +70,11 @@ public class AmbienteMB {
 	}
 	
 	public String listar() {
-		return "/adimin/listarAmbientes";
+		return "/admin/listarAmbientes";
 	}
 	
 	public String editar() {
-		return "/adimin/cadastroAmbiente";
+		return "/admin/cadastroAmbiente";
 	}
 	
 	public String excluir() {
@@ -86,7 +86,7 @@ public class AmbienteMB {
 	
 	public String novo() {
 		ambiente = new Ambiente();
-		return "/adimin/cadastroAmbiente";
+		return "/admin/cadastroAmbiente";
 	}
 
 }
