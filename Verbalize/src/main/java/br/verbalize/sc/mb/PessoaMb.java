@@ -3,8 +3,10 @@ package br.verbalize.sc.mb;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
@@ -12,6 +14,7 @@ import br.verbalize.sc.model.Pessoa;
 import br.verbalize.sc.rn.PessoaRN;
 
 @ManagedBean
+@SessionScoped
 public class PessoaMb {
 	private Pessoa pessoa;
 	private PessoaRN pessoaRN;
@@ -84,7 +87,7 @@ public class PessoaMb {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", e
 							.getMessage()));
 		}
-		return "";
+		return "index.xhtml";
 		
 		
 	}

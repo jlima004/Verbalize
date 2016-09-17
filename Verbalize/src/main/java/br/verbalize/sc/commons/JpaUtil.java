@@ -1,6 +1,5 @@
 package br.verbalize.sc.commons;
 
-import javax.faces.component.FacesComponent; 
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

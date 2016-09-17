@@ -23,7 +23,6 @@ import br.verbalize.sc.rn.PessoaRN;
 @SessionScoped
 public class LoginManager {
 	
-	
 	private Pessoa pessoa;
 	
 	public void login() throws ServletException, IOException {
