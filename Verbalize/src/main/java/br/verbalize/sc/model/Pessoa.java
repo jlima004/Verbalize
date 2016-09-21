@@ -4,8 +4,8 @@ package br.verbalize.sc.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+//import javax.persistence.EnumType;
+//import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
@@ -41,8 +41,8 @@ public class Pessoa {
 	@Column(nullable=false, length=14)
 	private String senha;
 	
-	@Enumerated(EnumType.STRING)
-	private Perfil perfil;
+	//@Enumerated(EnumType.STRING)
+	private String perfil;
 	
 	/*@Column(nullable=false, length=1)
 	private int tpPermissao;
@@ -110,13 +110,13 @@ public class Pessoa {
 		this.senha = senha;
 	}
 
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
+//	public Perfil getPerfil() {
+//		return perfil;
+//	}
+//
+//	public void setPerfil(Perfil perfil) {
+//		this.perfil = perfil;
+//	}
 
 	@Override
 	public int hashCode() {
@@ -130,6 +130,14 @@ public class Pessoa {
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
+	}
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 
 	@Override
