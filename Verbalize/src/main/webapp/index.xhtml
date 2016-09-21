@@ -219,6 +219,10 @@
 				<li><a href="#contato">Contato</a></li>
 				<li id="capa"><a href="#myPage">Home</a></li>
 				
+				<li><h:commandLink value="Entrar" action="#{loginManager.goLogin}" rendered="#{loginManager.pessoa == null}"/></li>
+	            <li><h:outputText value="Bem vindo, #{loginManager.pessoa.nmPessoa}" rendered="#{loginManager.pessoa != null}"/></li>
+	            <li><h:commandLink value="Sair" action="#{loginManager.logout}" rendered="#{loginManager.pessoa != null}"/></li>
+				
 		      </ul>
 		    </h:form>
 		    </div><!-- /.navbar-collapse -->
