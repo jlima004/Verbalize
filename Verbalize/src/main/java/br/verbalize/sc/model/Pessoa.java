@@ -118,6 +118,16 @@ public class Pessoa {
 //		this.perfil = perfil;
 //	}
 
+	
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -130,14 +140,6 @@ public class Pessoa {
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
-	}
-
-	public String getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(String perfil) {
-		this.perfil = perfil;
 	}
 
 	@Override
@@ -169,7 +171,10 @@ public class Pessoa {
 				return false;
 		} else if (!nuCpf.equals(other.nuCpf))
 			return false;
-		if (perfil != other.perfil)
+		if (perfil == null) {
+			if (other.perfil != null)
+				return false;
+		} else if (!perfil.equals(other.perfil))
 			return false;
 		if (senha == null) {
 			if (other.senha != null)
@@ -183,24 +188,8 @@ public class Pessoa {
 			return false;
 		return true;
 	}
-
-	/*public int getTpPermissao() {
-		return tpPermissao;
-	}
-
-	public void setTpPermissao(int tpPermissao) {
-		this.tpPermissao = tpPermissao;
-	}
-
-	public Date getDtCadastro() {
-		return dtCadastro;
-	}
-
-	public void setDtCadastro(Date dtCadastro) {
-		this.dtCadastro = dtCadastro;
-	}*/
 	
 	
-	
+
 
 }
