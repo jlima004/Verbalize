@@ -219,9 +219,35 @@
 				<li><a href="#contato">Contato</a></li>
 				<li id="capa"><a href="#myPage">Home</a></li>
 				
-				<li><h:commandLink value="Entrar" action="#{loginManager.goLogin}" rendered="#{loginManager.pessoa == null}"/></li>
-	            <li><h:outputText value="Bem vindo, #{loginManager.pessoa.nmPessoa}" rendered="#{loginManager.pessoa != null}"/></li>
-	            <li><h:commandLink value="Sair" action="#{loginManager.logout}" rendered="#{loginManager.pessoa != null}"/></li>
+				<li class="dropdown">
+		      	
+		      		<h:commandLink value="Entrar" action="#{loginManager.goLogin}" rendered="#{loginManager.pessoa == null}"/>
+	         		
+			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ADMIN')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:link outcome="/admin/admin" value="Painel Administrativo" /></li>
+			          <hr />
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
+			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_PROFESSOR')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:link outcome="/professor/portalProfessor" value="Portal do professor" /></li>
+			          <hr />
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
+			       <h:link rendered="#{loginManager.pessoa != null}" styleClass="dropdown-toggle navfundo2">
+			        	<f:passThroughAttribute name="data-toggle" value="dropdown" />
+			        	<span class="glyphicon glyphicon-user"></span>&nbsp;
+			        	<h:outputText value="#{loginManager.pessoa.nmPessoa}"/>
+			        	<span class="caret"></span>
+			       </h:link>
+			      
+			    </li>	        
+	            
 				
 		      </ul>
 		    </h:form>

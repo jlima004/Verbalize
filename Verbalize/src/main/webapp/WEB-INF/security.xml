@@ -7,11 +7,14 @@
 	<http auto-config="true" use-expressions="true">
 		<access-denied-handler error-page="/accessDenied.xhtml" />
 		<intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
+		<!-- <intercept-url pattern="/professor/*" access="hasAnyRole('ROLE_PROFESSOR','ROLE_ADMIN')" /> -->
 		<form-login login-page="/login.xhtml"
 			authentication-failure-url="/login.xhtml?erro=true"
-			default-target-url="/index.xhtml" />
+			authentication-success-handler-ref="customAuthenticationHandler"/>
 		<csrf disabled="true" />
 	</http>
+	
+	<b:bean id="customAuthenticationHandler" class="br.verbalize.sc.commons.CustomAuthenticationHandler" />
 
 	<!-- <user-service> <user name="user" password="password" authorities="ROLE_USER" 
 		/> </user-service> -->
