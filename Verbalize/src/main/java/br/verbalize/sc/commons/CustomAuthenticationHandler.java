@@ -26,6 +26,8 @@ public class CustomAuthenticationHandler implements AuthenticationSuccessHandler
 				redirectStrategy.sendRedirect(request, response, "/admin/admin.xhtml");
 			} else if (ga.getAuthority().equals("ROLE_PROFESSOR")) {
 				redirectStrategy.sendRedirect(request, response, "/professor/portalProfessor.xhtml");
+			} else if (ga.getAuthority().equals("ROLE_ALUNO")) {
+				redirectStrategy.sendRedirect(request, response, "/aluno/portalAluno.xhtml");
 			}
 		}
 		

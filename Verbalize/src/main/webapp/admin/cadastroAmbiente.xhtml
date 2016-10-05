@@ -60,49 +60,41 @@
 				
 		      	<li><h:link outcome="/index" value="Home" /></li>
 				<li class="dropdown">
-			        
-			         <h:panelGroup rendered="#{sessaoMb.estaLogado() == false}">
-			        	<a href="#" data-toggle="modal" data-target="#login-modal">Entrar</a>
-			        </h:panelGroup>
-			        
-			        <h:link rendered="#{sessaoMb.estaLogado()}" styleClass="dropdown-toggle navfundo2">
+		      	
+		      		<h:commandLink value="Entrar" action="#{loginManager.goLogin}" rendered="#{loginManager.pessoa == null}"/>
+	         		
+			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ADMIN')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:link outcome="/admin/admin" value="Painel Administrativo" /></li>
+			          <hr />
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
+			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_PROFESSOR')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:link outcome="/professor/portalProfessor" value="Portal do professor" /></li>
+			          <hr />
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
+			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ALUNO')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:link outcome="/aluno/portalAluno" value="Portal do aluno" /></li>
+			          <hr />
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
+			       <h:link rendered="#{loginManager.pessoa != null}" styleClass="dropdown-toggle navfundo2">
 			        	<f:passThroughAttribute name="data-toggle" value="dropdown" />
 			        	<span class="glyphicon glyphicon-user"></span>&nbsp;
-			        	<h:outputText value="#{sessaoMb.nomeUsuarioLogado}"/>
+			        	<h:outputText value="#{loginManager.pessoa.nmPessoa}"/>
 			        	<span class="caret"></span>
-			        </h:link>
-			       
-			       <h:panelGroup rendered="#{sessaoMb.ehAdmin()}"> 
-			        <ul class="dropdown-menu">
-			          <li><h:link outcome="/admin/admin" value="Painel Administrativo" /></li>	
-			          <hr />
-			          <li><h:commandLink action="#{sessaoMb.sair}" value="Sair"/></li>		          
-			        </ul>
-			       </h:panelGroup>
-			       
-			        <h:panelGroup rendered="#{sessaoMb.ehProfessor()}"> 
-			        <ul class="dropdown-menu">
-			          <li><h:link outcome="/professor/portalProfessor" value="Portal do Professor" /></li>
-			          <hr />
-			          <li><h:commandLink action="#{sessaoMb.sair}" value="Sair"/></li>		          
-			        </ul>
-			       </h:panelGroup>
-			       
-			        <h:panelGroup rendered="#{sessaoMb.ehAluno()}"> 
-			        <ul class="dropdown-menu">
-			          <li><h:link outcome="/aluno/portalAluno" value="Portal do Aluno" /></li>
-			          <hr />
-			          <li><h:commandLink action="#{sessaoMb.sair}" value="Sair"/></li>		          
-			        </ul>
-			       </h:panelGroup>
-			       
-				    <h:panelGroup rendered="#{sessaoMb.estaLogado() == false}">
-				        <ul class="dropdown-menu">
-				          <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>		          
-				        </ul>
-				   	</h:panelGroup>
-			        
-			    </li>	        
+			       </h:link>
+			      
+			    </li>	   
 				        
 		      </ul>
 		      </h:form>

@@ -305,9 +305,23 @@
 		      	
 		      		<h:commandLink value="Entrar" action="#{loginManager.goLogin}" rendered="#{loginManager.pessoa == null}"/>
 	         		
-			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ADMIN')}">
+			        <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ADMIN')}">
 			       	<ul class="dropdown-menu"> 
 			          <li><h:link outcome="/admin/admin" value="Painel Administrativo" /></li>
+			          <hr />
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
+			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_PROFESSOR')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
+			        <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ALUNO')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:link outcome="/aluno/portalAluno" value="Portal do aluno" /></li>
 			          <hr />
 			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
 			        </ul>	  			         

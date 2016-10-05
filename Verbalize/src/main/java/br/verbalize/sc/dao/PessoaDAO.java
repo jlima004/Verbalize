@@ -24,7 +24,7 @@ public class PessoaDAO extends DAO<Pessoa> {
 	public List<Pessoa> listarProfessores() {
 		Query query = getEM().createQuery(
 				"From Pessoa u Where u.perfil = :perfil", Pessoa.class);
-		query.setParameter("perfil", Perfil.PROFESSOR);
+		query.setParameter("perfil", Perfil.ROLE_PROFESSOR);
 
 		return query.getResultList();
 	}

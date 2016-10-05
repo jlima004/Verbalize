@@ -1,5 +1,5 @@
 package br.verbalize.sc.model;
 
 public enum Perfil {
-	ADMIN, PROFESSOR, ALUNO
+	ROLE_ADMIN, ROLE_PROFESSOR, ROLE_ALUNO
 }

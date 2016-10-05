@@ -239,6 +239,14 @@
 			        </ul>	  			         
 			       </h:panelGroup>
 			       
+			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ALUNO')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:link outcome="/aluno/portalAluno" value="Portal do aluno" /></li>
+			          <hr />
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
 			       <h:link rendered="#{loginManager.pessoa != null}" styleClass="dropdown-toggle navfundo2">
 			        	<f:passThroughAttribute name="data-toggle" value="dropdown" />
 			        	<span class="glyphicon glyphicon-user"></span>&nbsp;
