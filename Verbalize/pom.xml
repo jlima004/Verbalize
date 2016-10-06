@@ -15,6 +15,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+    	<groupId>hsqldb</groupId>
+    	<artifactId>hsqldb</artifactId>
+    	<version>1.8.0.10</version>
+    	<scope>test</scope>
+    </dependency>
+    <dependency>
     	<groupId>com.sun.faces</groupId>
     	<artifactId>jsf-api</artifactId>
     	<version>2.2.13</version>
@@ -91,7 +97,7 @@
     	<plugin>
     		<groupId>org.apache.maven.plugins</groupId>
     		<artifactId>maven-compiler-plugin</artifactId>
-    		<version>3.1</version>
+    		<version>3.5.1</version>
     		<configuration>
     			<source>1.8</source>
     			<target>1.8</target>

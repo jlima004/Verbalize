@@ -10,8 +10,7 @@ import java.util.List;
 public abstract class DAO<T> {
 
 	protected EntityManager getEM() {
-		EntityManager em = JpaUtil.getEntityManager();
-		return em;
+		return JpaUtil.getEntityManager();
 	}
 	
 	public abstract T buscarPorId(long id);

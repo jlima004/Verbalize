@@ -33,7 +33,7 @@ public class DAOFactory {
 	public static RespostaDAO getRespostaDAO() {
 		if (respostaDAO == null) {
 			respostaDAO = new RespostaDAO();
-		}
+	}
 		return respostaDAO;
 	}
 
@@ -47,7 +47,7 @@ public class DAOFactory {
 	public static RegraDAO getRegraDAO() {
 		if (regraDAO == null) {
 			regraDAO = new RegraDAO();
-		}
+	}
 		return regraDAO;
 	}
 	
