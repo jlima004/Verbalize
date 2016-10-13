@@ -81,7 +81,7 @@ public class AmbienteMB {
 		ambienteRN.excluir(ambiente);
 		listaAmbientes.remove(ambiente);
 		ambiente = new Ambiente();
-		return null;
+		return "";
 	}
 	
 	public String novo() {
