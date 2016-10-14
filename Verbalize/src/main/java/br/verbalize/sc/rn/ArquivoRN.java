@@ -32,7 +32,7 @@ public class ArquivoRN {
 	}
 	
 	public void excluir(Arquivo arquivo) {
-		dao.excluir(arquivo);
+		dao.excluir(arquivo.getId(), arquivo);
 	}
 
 }

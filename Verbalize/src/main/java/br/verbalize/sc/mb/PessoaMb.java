@@ -73,10 +73,14 @@ public class PessoaMb {
 	}
 	
 	public String excluir() {
-		//Long idExcluir = Long.parseLong(id);
+		
 		pessoaRN.excluir(pessoa);
-		listaPessoas = null;
-		return "";
+		listaPessoas.remove(pessoa);
+		pessoa = new Pessoa();
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário removido com sucesso!", "");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+		return null;
+		
 	}
 	
 	public String salvar() {
@@ -94,5 +98,7 @@ public class PessoaMb {
 		
 		
 	}
+	
+	
 	
 }

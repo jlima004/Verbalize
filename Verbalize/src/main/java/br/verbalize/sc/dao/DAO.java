@@ -20,9 +20,8 @@ public abstract class DAO<T> {
 		getEM().merge(object);
 	}
 	
-	public void excluir(T object) {
-		//Object object = getEM().getReference(Object.class, id);
-		getEM().remove(object);
+	public void excluir(Long id, T object) {
+		getEM().remove(getEM().getReference(object.getClass(), id));
 	}
 
 }

@@ -25,7 +25,7 @@ public class AmbienteRN {
 	}
 	
 	public void excluir(Ambiente ambiente) {
-		DAOFactory.getAmbienteDAO().excluir(ambiente);
+		DAOFactory.getAmbienteDAO().excluir(ambiente.getId(), ambiente);
 	}
 	
 	public List<Ambiente> listarParaAutoComplete(String busca) {

@@ -36,7 +36,7 @@ public class PessoaRN {
 	}
 	
 	public void excluir(Pessoa pessoa) {
-		dao.excluir(pessoa);
+		dao.excluir(pessoa.getId(), pessoa);
 	}
 	
 	public Pessoa buscarPorEmail(String email) {

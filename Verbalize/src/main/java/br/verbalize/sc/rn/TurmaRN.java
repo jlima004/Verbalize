@@ -40,7 +40,7 @@ public class TurmaRN {
 	}
 	
 	public void excluir(Turma turma) {
-		dao.excluir(turma);
+		dao.excluir(turma.getId(), turma);
 	}
 	
 }

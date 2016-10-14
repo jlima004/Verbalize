@@ -32,7 +32,7 @@ public class RespostaRN {
 	}
 	
 	public void excluir(Resposta resposta) {
-		dao.excluir(resposta);
+		dao.excluir(resposta.getId(), resposta);
 	}
 
 }
