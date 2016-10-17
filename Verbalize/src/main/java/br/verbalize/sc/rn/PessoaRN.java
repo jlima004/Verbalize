@@ -2,20 +2,20 @@ package br.verbalize.sc.rn;
 
 import java.util.List;
 
-import br.verbalize.sc.dao.PessoaDAO;
+import br.verbalize.sc.dao.DAOFactory;
 import br.verbalize.sc.model.Pessoa;
 
 public class PessoaRN {
 	
-	private PessoaDAO dao;
+	/*private PessoaDAO dao;
 	
 	public PessoaRN() {
 		dao = new PessoaDAO();
-	}
+	}*/
 	
 	public void salvar(Pessoa pessoa) throws Exception {
 		try {
-			dao.salvar(pessoa);
+			DAOFactory.getPessoaDAO().salvar(pessoa);
 		} catch (Exception e) {
 			throw new Exception("Houve um erro na comunicação com "
 					+ "o banco de dados. Contate o administrador do site.");
@@ -24,23 +24,23 @@ public class PessoaRN {
 	}
 	
 	public Pessoa buscarPorId(Long id) {
-		return dao.buscarPorId(id);
+		return DAOFactory.getPessoaDAO().buscarPorId(id);
 	}
 	
 	public List<Pessoa> listar() {
-		return dao.listar();
+		return DAOFactory.getPessoaDAO().listar();
 	}
 	
 	public List<Pessoa> ListarProfessores() {
-		return dao.listarProfessores();
+		return DAOFactory.getPessoaDAO().listarProfessores();
 	}
 	
 	public void excluir(Pessoa pessoa) {
-		dao.excluir(pessoa.getId(), pessoa);
+		DAOFactory.getPessoaDAO().excluir(pessoa.getId(), pessoa);
 	}
 	
 	public Pessoa buscarPorEmail(String email) {
-		return dao.buscaPorEmail(email);
+		return DAOFactory.getPessoaDAO().buscaPorEmail(email);
 	}
 	
 }

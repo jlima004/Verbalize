@@ -98,6 +98,10 @@ public class PessoaMb {
 		
 	}
 	
+	public String editar() {
+		return "/admin/pessoaForm.xhtml";
+	}
+	
 	public void gerarPdf(){
 		//caso nao carregue verificar anotação da pagina
 		

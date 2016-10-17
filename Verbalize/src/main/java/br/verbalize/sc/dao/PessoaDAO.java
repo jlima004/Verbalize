@@ -16,14 +16,14 @@ public class PessoaDAO extends DAO<Pessoa> {
 
 	@SuppressWarnings("unchecked")
 	public List<Pessoa> listar() {
-		Query query = getEM().createQuery("From Pessoa", Pessoa.class);
+		Query query = getEM().createQuery("SELECT p From Pessoa p", Pessoa.class);
 		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Pessoa> listarProfessores() {
 		Query query = getEM().createQuery(
-				"From Pessoa u Where u.perfil = :perfil", Pessoa.class);
+				"SELECT p From Pessoa p WHERE p.perfil = :perfil", Pessoa.class);
 		query.setParameter("perfil", Perfil.ROLE_PROFESSOR);
 
 		return query.getResultList();
@@ -31,7 +31,7 @@ public class PessoaDAO extends DAO<Pessoa> {
 	
 	public Pessoa buscaPorEmail(String email) {
 		Query query = getEM().createQuery(
-				"From Pessoa u Where u.email = :email", Pessoa.class);
+				"SELECT p From Pessoa p WHERE p.email = :email", Pessoa.class);
 		query.setParameter("email", email);
 		
 		try {

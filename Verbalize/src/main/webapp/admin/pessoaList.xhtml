@@ -134,7 +134,7 @@
 						<h:outputText value="#{user.email}"/>
 					</p:column>
 					<p:column>
-						<p:commandButton action="#{pessoaMb.editarId}" icon="ui-icon-pencil" title="Editar">
+						<p:commandButton action="#{pessoaMb.editar}" icon="ui-icon-pencil" title="Editar">
 							<f:setPropertyActionListener value="#{user}" target="#{pessoaMb.pessoa}"></f:setPropertyActionListener>
 						</p:commandButton>
 						<p:commandButton update="tabela-pessoas" action="#{pessoaMb.excluir}" icon="ui-icon-trash" title="Excluir">
