@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://java.sun.com/jsf/passthrough">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -124,64 +124,66 @@
 		style="margin-top: 40px; margin-bottom: 60px;">
 
 		<div class="col-lg-8 col-lg-offset-2">
+		
+		<p:messages />		
 
-			<h:form>
-				<h:panelGroup rendered="#{not empty pessoaMb.pessoa.id}">
-
+			<h:form styleClass="formulario" id="form">
+			
+				<!-- <h:panelGroup rendered="#{pessoaMb.pessoa.id!=null}">
 					<div class="row">
 						<div class="form-group id col-xs-2 col-md-1">
 							<label for="exampleId">ID</label>
 							<h:inputText styleClass="form-control" readonly="true"
 								value="#{pessoaMb.pessoa.id}" id="exampleId" />
 						</div>
-
 					</div>
-				</h:panelGroup>
-				<h:inputHidden value="#{pessoaMb.pessoa.id}" />
+				</h:panelGroup> -->
+				<!-- <h:inputHidden value="#{pessoaMb.pessoa.id}" /> -->
 				<div class="row">
 					<div class="form-group col-xs-8">
-						<label>Nome</label>
+						<p:outputLabel for="nome" value="Nome" />
 						<div class="input-group">
 							<span class="input-group-addon"><span
 								class="glyphicon glyphicon-user"></span></span>
-							<h:inputText styleClass="form-control"
+							<p:inputText styleClass="form-control"
 								value="#{pessoaMb.pessoa.nmPessoa}" required="true"
-								requiredMessage="O Campo Nome é obrigatório" id="nome" />
+								requiredMessage="O Campo Nome é obrigatório" id="nome"
+								maxlength="100" placeholder="Digite seu nome aqui!" />
 						</div>
 					</div>
 					<h:message for="nome" errorClass="erros" />
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-8">
-						<label>Email</label>
+						<p:outputLabel for="email" value="E-mail" />
 						<div class="input-group">
 							<span class="input-group-addon">@</span>
-							<h:inputText styleClass="form-control" id="email" required="true"
+							<p:inputText styleClass="form-control" id="email" required="true"
 								requiredMessage="O Campo Email é obrigatório"
 								value="#{pessoaMb.pessoa.email}" maxlength="100" size="50"
-								placeholder="tania@abnt.com" validatorMessage="E-mail incorreto">
-								<f:validateRegex
-									pattern="(^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$)" />
-							</h:inputText>
+								placeholder="tania@abnt.com" validatorMessage="E-mail incorreto"/>
+								<p:keyFilter for="email" mask="email" />
 						</div>
 					</div>
 					<h:message for="email" errorClass="erros" />
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-5">
-						<label for="exampleInputCPF">CPF</label>
-						<h:inputText styleClass="form-control" id="exampleInputCPF"
-							value="#{pessoaMb.pessoa.nuCpf}" maxlength="14" size="14" />
+						<p:outputLabel for="cpf" value="CPF" />
+						<p:inputMask styleClass="form-control" id="cpf" required="true"
+							requiredMessage="O CPF é obrigatório!"
+							value="#{pessoaMb.pessoa.nuCpf}" mask="999.999.999-99" />
 					</div>
 
 					<div class="form-group col-xs-5">
-						<label for="exampleInputTelefone">Telefone</label>
+						<p:outputLabel for="telefone" value="Telefone" />
 						<div class="input-group">
 							<span class="input-group-addon"><span
 								class="glyphicon glyphicon-phone-alt"></span></span>
-							<h:inputText styleClass="form-control" id="exampleInputTelefone"
-								value="#{pessoaMb.pessoa.telefone}" maxlength="13"
-								placeholder="(XX) XXXXXXXX" />
+								<p:inputMask styleClass="form-control" id="telefone"
+							required="true" requiredMessage="O telefone é obrigatório!"
+							value="#{pessoaMb.pessoa.telefone}" mask="(99)9999-9999?9"
+							 placeholder="(XX) XXXXXXXX" />
 						</div>
 					</div>
 
@@ -189,21 +191,23 @@
 
 				<div class="row">
 					<div class="form-group col-xs-5">
-						<label for="exampleInputPassword1">Password</label>
-						<h:inputSecret styleClass="form-control"
-							id="exampleInputPassword1" value="#{pessoaMb.pessoa.senha}"
+						<p:outputLabel for="senha" value="Senha" />
+						<p:password styleClass="form-control"
+							id="senha" required="true" requiredMessage="A senha é obrigatória!"
+							value="#{pessoaMb.pessoa.senha}"
 							maxlength="14" size="14" />
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="form-group col-xs-5">
-						<label for="exampleInputPerfil">Perfil</label>
+						<label>Perfil</label>
 						<div class="input-group">
-							<span class="input-group-addon"><span
-								class="glyphicon glyphicon-sunglasses"></span></span>
+							<span class="input-group-addon">
+								<span class="glyphicon glyphicon-sunglasses"></span>
+							</span>
 							<h:selectOneMenu styleClass="form-control"
-								id="exampleInputPerfil" value="#{pessoaMb.pessoa.perfil}">
+								id="Perfil" value="#{pessoaMb.pessoa.perfil}">
 								<f:selectItem itemValue="ROLE_ADMIN" itemLabel="Administrador" />
 								<f:selectItem itemValue="ROLE_PROFESSOR" itemLabel="Professor" />
 								<f:selectItem itemValue="ROLE_ALUNO" itemLabel="Aluno" />

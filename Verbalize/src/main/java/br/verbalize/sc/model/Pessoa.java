@@ -31,7 +31,7 @@ public class Pessoa {
 	@Column(nullable=false, length=14)
 	private String nuCpf;
 	
-	@Column(length=13)
+	@Column(length=14)
 	private String telefone;
 	
 	/*@Temporal(TemporalType.DATE)
