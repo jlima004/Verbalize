@@ -8,9 +8,22 @@ import java.sql.SQLException;
 import java.util.List;
 
 public abstract class DAO<T> {
-
+	
+	private EntityManager EM = null;
+	
+	public DAO() {
+		super();
+	}
+	
+	public DAO(EntityManager EM) {
+		this.EM = EM;
+	}
+	
 	protected EntityManager getEM() {
-		return JpaUtil.getEntityManager();
+		if (this.EM == null) {
+			return JpaUtil.getEntityManager();
+		}
+		return this.EM;
 	}
 	
 	public abstract T buscarPorId(long id);

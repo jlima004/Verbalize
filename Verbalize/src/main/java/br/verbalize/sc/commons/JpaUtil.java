@@ -14,7 +14,7 @@ public class JpaUtil {
 
 	public static void init() {
 		if (EMF == null) {
-			EMF = Persistence.createEntityManagerFactory("Verbalize_SA");
+			EMF = Persistence.createEntityManagerFactory("verbalize_SA");
 		}
 	}
 
