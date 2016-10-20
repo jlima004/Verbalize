@@ -7,10 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-//import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
-//import javax.faces.event.ComponentSystemEvent;
 
 
 
@@ -35,11 +33,11 @@ public class TurmaMb {
 	private List<Arquivo> arquivos;
 
 	@PostConstruct
-	public void init() {
-		turmaRN = new TurmaRN();
+	public void depoisDeConstruir() {
 		turma = new Turma();
-		arquivoRN = new ArquivoRN();
+		turmaRN = new TurmaRN();
 		arquivoDaTurma = new Arquivo();
+		arquivoRN = new ArquivoRN();
 		turma.setAlunosParaMatricular(new ArrayList<Pessoa>());
 	}
 
@@ -115,6 +113,7 @@ public class TurmaMb {
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo",
 							"Salvo com sucesso."));
+			listaTurma = null;
 			return "/admin/turmaList";
 		} catch (IllegalArgumentException exception) {
 			exception.printStackTrace();
@@ -142,15 +141,18 @@ public class TurmaMb {
 	public String excluir() {
 		//Long id = Long.parseLong(idParam);
 		turmaRN.excluir(turma);
-		listaTurma = null;
-		return "";
+		listaTurma.remove(turma);
+		turma = new Turma();
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Turma removida com sucesso!", "");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+		return null;
 	}
 
 	public void carregarEdicao() {
 		if (editarId != null &&  
 				!FacesContext.getCurrentInstance()
 				.getPartialViewContext().isAjaxRequest()) {
-			turma = turmaRN.buscaPorId(editarId);
+			turma = turmaRN.buscarPorId(editarId);
 		}
 	}
 

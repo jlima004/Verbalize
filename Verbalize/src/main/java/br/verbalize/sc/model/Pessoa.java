@@ -192,16 +192,8 @@ public class Pessoa {
 		this.senha = senha;
 	}
 
-//	public Perfil getPerfil() {
-//		return perfil;
-//	}
-//
-//	public void setPerfil(Perfil perfil) {
-//		this.perfil = perfil;
-//	}
 
 	
-
 	public String getPerfil() {
 		return perfil;
 	}

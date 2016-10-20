@@ -3,44 +3,38 @@ package br.verbalize.sc.rn;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.verbalize.sc.dao.TurmaDAO;
+import br.verbalize.sc.dao.DAOFactory;
 import br.verbalize.sc.model.Turma;
 import br.verbalize.sc.model.Perfil;
 
 public class TurmaRN {
-
-	private TurmaDAO dao;
-	
-	public TurmaRN() {
-		dao = new TurmaDAO();
-	}
-	
-	public List<Turma> listar() {
-		return dao.listar();
-	}
-	 
+ 
 	public void salvar(Turma turma) throws IllegalArgumentException,Exception {
 		if(turma.getProfessor() == null) {
-			throw new IllegalArgumentException("√â preciso selecionar um Professor");
+			throw new IllegalArgumentException("… preciso selecionar um Professor");
 		}
-		if(!turma.getProfessor().getPerfil().equals(Perfil.ROLE_PROFESSOR)){
-			throw new IllegalArgumentException("√â preciso selecionar um Professor");
+		if(!turma.getProfessor().getPerfil().equals(Perfil.ROLE_PROFESSOR.toString())){
+			throw new IllegalArgumentException("O usuario selecionado n„o È um professor um Professor");
 		}
 		
 		try {
-			dao.salvar(turma);
+			DAOFactory.getTurmaDAO().salvar(turma);
 		} catch (SQLException e) {
 			throw new Exception("Houve um erro na comunica√ß√£o com "
 					+ "o banco de dados. Contate o administrador do site.");
 		}
 	}
 	
-	public Turma buscaPorId(Long id) {
-		return dao.buscarPorId(id);
+	public Turma buscarPorId(Long id) {
+		return DAOFactory.getTurmaDAO().buscarPorId(id);
+	}
+	
+	public List<Turma> listar() {
+		return DAOFactory.getTurmaDAO().listar();
 	}
 	
 	public void excluir(Turma turma) {
-		dao.excluir(turma.getId(), turma);
+		DAOFactory.getTurmaDAO().excluir((turma.getId()), turma);
 	}
 	
 }

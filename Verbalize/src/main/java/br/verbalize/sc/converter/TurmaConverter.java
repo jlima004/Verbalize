@@ -18,7 +18,7 @@ public class TurmaConverter implements Converter {
 
 		TurmaRN rn = new TurmaRN();
 
-		return rn.buscaPorId(id);
+		return rn.buscarPorId(id);
 	}
 
 	@Override

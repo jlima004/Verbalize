@@ -77,7 +77,7 @@ public class ArquivoMb {
 	}
 	
 	public void carregarTurma() {
-		turma = turmaRN.buscaPorId(turmaId);
+		turma = turmaRN.buscarPorId(turmaId);
 	}
 	
 	public void excluir(AjaxBehaviorEvent event) {

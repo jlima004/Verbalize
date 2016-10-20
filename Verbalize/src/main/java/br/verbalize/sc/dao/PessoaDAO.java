@@ -31,9 +31,8 @@ public class PessoaDAO extends DAO<Pessoa> {
 
 	@SuppressWarnings("unchecked")
 	public List<Pessoa> listarProfessores() {
-		Query query = getEM().createQuery(
-				"From Pessoa WHERE perfil = :perfil", Pessoa.class);
-		query.setParameter("perfil", Perfil.ROLE_PROFESSOR);
+		Query query = getEM().createQuery("From Pessoa WHERE perfil = :perfil", Pessoa.class);
+		query.setParameter("perfil", Perfil.ROLE_PROFESSOR.toString());
 		return query.getResultList();
 	}
 	
