@@ -10,8 +10,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.escolanotpad.sc.dao.UsuarioDAO;
-import br.escolanotpad.sc.model.entity.Usuario;
 import br.verbalize.sc.commons.JpaUtilTest;
 import br.verbalize.sc.model.Pessoa;
 
@@ -51,7 +49,7 @@ public class PessoaDAOTest {
 		Assert.assertNull(EM);
 	}
 	
-	@Test
+	/*@Test
 	public void salvaPessoaTest() {
 		PessoaDAO dao = new PessoaDAO(EM);
 		Pessoa pessoaSave = new Pessoa(1l, "ROLE_ADMINISTRADOR", "João", "joao@joao.com.br", 
@@ -64,7 +62,7 @@ public class PessoaDAOTest {
 		Pessoa pessoaRecuperada = dao.buscaPorEmail("joao@joao.com.br");
 		
 		Assert.assertTrue(pessoaSave.equals(pessoaRecuperada));
-	}
+	}*/
 	
 	
 	

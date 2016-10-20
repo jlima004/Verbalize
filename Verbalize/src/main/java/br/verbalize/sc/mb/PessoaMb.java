@@ -200,6 +200,7 @@ private PdfPCell createHeader(String titulo) {
 	public String salvar() {
 		try {
 			pessoaRN.salvar(pessoa);
+			listaPessoas = null;
 			return "/admin/pessoaList";
 		} catch (Exception e) {
 			e.printStackTrace();

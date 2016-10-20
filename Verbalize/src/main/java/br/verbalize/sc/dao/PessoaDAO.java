@@ -25,7 +25,7 @@ public class PessoaDAO extends DAO<Pessoa> {
 
 	@SuppressWarnings("unchecked")
 	public List<Pessoa> listar() {
-		Query query = getEM().createQuery("From Pessoa order by id desc", Pessoa.class);
+		Query query = getEM().createQuery("From Pessoa", Pessoa.class);
 		return query.getResultList();
 	}
 
