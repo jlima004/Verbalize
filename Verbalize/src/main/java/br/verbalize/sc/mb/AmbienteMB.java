@@ -56,7 +56,6 @@ public class AmbienteMB {
 	public String salvar() {
 		try {
 			ambienteRN.salvar(ambiente);
-			ambiente = new Ambiente();
 			listaAmbientes = null;
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ambiente cadastrado com sucesso!", "");
 			FacesContext.getCurrentInstance().addMessage(null, message);

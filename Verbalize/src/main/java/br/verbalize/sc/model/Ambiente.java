@@ -19,6 +19,13 @@ public class Ambiente {
 	private int capacidade;
 	
 	
+	
+	
+	
+	public Ambiente() {
+	}
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -49,8 +56,8 @@ public class Ambiente {
 	public void setCapacidade(int capacidade) {
 		this.capacidade = capacidade;
 	}
-	
-	
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -62,6 +69,8 @@ public class Ambiente {
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -92,6 +101,9 @@ public class Ambiente {
 			return false;
 		return true;
 	}
+	
+	
+	
 	
 
 }

@@ -15,7 +15,7 @@ public class AmbienteDAO extends DAO<Ambiente> {
 
 	@SuppressWarnings("unchecked")
 	public List<Ambiente> listar() {
-		Query query = getEM().createQuery("SELECT a FROM Ambiente a", Ambiente.class);
+		Query query = getEM().createQuery("FROM Ambiente", Ambiente.class);
 		return query.getResultList();
 	}
 	
