@@ -138,7 +138,7 @@ public class TurmaMb {
 		turma = turmaRN.buscaPorId(editarId);
 	}*/
 
-	public String excluir() {
+	public String excluir(Turma turma) {
 		//Long id = Long.parseLong(idParam);
 		turmaRN.excluir(turma);
 		listaTurma.remove(turma);

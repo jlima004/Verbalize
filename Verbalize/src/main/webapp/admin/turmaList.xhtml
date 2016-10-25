@@ -144,7 +144,7 @@
 					</span>
 					<span>
 						<h:commandLink onclick="return confirm('Tem certeza da exclusão da turma #{turma.nmTurma}');" styleClass="btn btn-excluir"
-							action="#{turmaMb.excluir()}" value="">
+							action="#{turmaMb.excluir(turma)}" value="">
 							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 							</h:commandLink>
 					</span>
