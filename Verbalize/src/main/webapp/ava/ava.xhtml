@@ -4,7 +4,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://java.sun.com/jsf/passthrough">
+	 xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -129,10 +129,41 @@
 		      <ul class="nav navbar-nav navbar-right">
 				
 		      	<li><h:link outcome="/index" value="Home" /></li>
+		      	<li class="dropdown">
 		      	
-				<li><h:commandLink value="Entrar" action="#{loginManager.goLogin}" rendered="#{loginManager.pessoa == null}"/></li>
-	            <li><h:outputText value="Bem vindo, #{loginManager.pessoa.nmPessoa}" rendered="#{loginManager.pessoa != null}"/></li>
-	            <li><h:commandLink value="Sair" action="#{loginManager.logout}" rendered="#{loginManager.pessoa != null}"/></li>    
+		      		<h:commandLink value="Entrar" action="#{loginManager.goLogin}" rendered="#{loginManager.pessoa == null}"/>
+	         		
+			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ADMIN')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
+			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_PROFESSOR')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:link outcome="/professor/portalProfessor" value="Portal do professor" /></li>
+			          <hr />
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
+			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ALUNO')}">
+			       	<ul class="dropdown-menu"> 
+			          <li><h:link outcome="/aluno/portalAluno" value="Portal do aluno" /></li>
+			          <hr />
+			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
+			        </ul>	  			         
+			       </h:panelGroup>
+			       
+			       <h:link rendered="#{loginManager.pessoa != null}" styleClass="dropdown-toggle navfundo2">
+			        	<f:passThroughAttribute name="data-toggle" value="dropdown" />
+			        	<span class="glyphicon glyphicon-user"></span>&nbsp;
+			        	<h:outputText value="#{loginManager.pessoa.nmPessoa}"/>
+			        	<span class="caret"></span>
+			       </h:link>
+			      
+			    </li>	  
+				
 				        
 		      </ul>
 		      </h:form>
@@ -147,7 +178,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li>
-                    <h:link outcome="/admin/enviararquivo" value="Enviar arquivos">
+                    <h:link outcome="/ava/enviararquivo" value="Enviar arquivos">
 						<f:param name="idturma" value="#{turmaMb.turma.id}" />
 					</h:link>
                 </li>
@@ -213,9 +244,9 @@
 		            		<h:column>
 		            			<h:graphicImage styleClass="img-thumbnail" name="images/uploads/#{file.nome}" />
 		            		</h:column>
-		            		<h:column rendered="#{sessaoMb.ehProfessor()}">
+		            		<h:column rendered="#{loginManager.pessoa.perfil.equals('ROLE_PROFESSOR')}">
 		            		<span>
-		            			<h:link styleClass="btn btn-warning" outcome="/enviararquivo">
+		            			<h:link styleClass="btn btn-warning" outcome="/ava/enviararquivo">
 			            			<f:param name="idarquivo" value="#{file.id}" />
 			            			<f:param name="idturma" value="#{turmaMb.turma.id}" />
 			            			<span class="glyphicon glyphicon-pencil"></span>

@@ -103,7 +103,7 @@ public class ArquivoMb {
 			
 			arquivoRN.adicionar(arquivo);
 			
-			return "/admin/ava?idturma=" + turma.getId().toString() + "&faces-redirect=true";
+			return "/ava/ava?idturma=" + turma.getId().toString() + "&faces-redirect=true";
 			
 		} catch (IOException e) {
 			e.printStackTrace();
