@@ -4,7 +4,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://java.sun.com/jsf/passthrough">
+	 xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -307,8 +307,6 @@
 	         		
 			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ADMIN')}">
 			       	<ul class="dropdown-menu"> 
-			          <li><h:link outcome="/admin/admin" value="Painel Administrativo" /></li>
-			          <hr />
 			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
 			        </ul>	  			         
 			       </h:panelGroup>
@@ -323,6 +321,8 @@
 			       
 			       <h:panelGroup rendered="#{loginManager.pessoa.perfil.equals('ROLE_ALUNO')}">
 			       	<ul class="dropdown-menu"> 
+			          <li><h:link outcome="/aluno/portalAluno" value="Portal do aluno" /></li>
+			          <hr />
 			          <li><h:commandLink value="Sair" action="#{loginManager.logout}"/></li>
 			        </ul>	  			         
 			       </h:panelGroup>
@@ -334,7 +334,7 @@
 			        	<span class="caret"></span>
 			       </h:link>
 			      
-			    </li>	       
+			    </li>
 				        
 		      </ul>
 		      </h:form>
@@ -430,7 +430,7 @@
 														
 														<h:column>
 															<span>
-																<h:link styleClass="btn btn-primary" outcome="/ava"
+																<h:link styleClass="btn btn-primary" outcome="/ava/ava"
 																	value="" style="padding: 6px 12px !important;">
 																	<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 																	<f:param name="idturma" value="#{turma.id}" />
