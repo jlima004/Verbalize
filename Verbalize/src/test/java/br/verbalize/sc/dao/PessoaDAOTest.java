@@ -67,5 +67,72 @@ public class PessoaDAOTest {
 		Assert.assertTrue(pessoaSave.equals(pessoaRecuperada));
 	}
 	
+	@Test
+	public void salvaPessoaFalseTest() throws SQLException {
+		PessoaDAO dao = new PessoaDAO(EM);
+		Pessoa pessoaSave = new Pessoa(2l, "Moacir", "moacir@senai.com", "123456788912", "000000000000", "1234", "ROLE_ALUNO");
+		
+		JpaUtilTest.getInstancia().beginSession();
+		
+		dao.salvar(pessoaSave);
+		
+		JpaUtilTest.getInstancia().endSession();
+		
+		Pessoa pessoaRecuperada = dao.buscaPorEmail("naoexiste@senai.com");
+		
+		Assert.assertFalse(pessoaSave.equals(pessoaRecuperada));
+	}
+	
+	@Test
+	public void salvaPessoaConstrutorVazioTest() throws SQLException {
+		PessoaDAO dao = new PessoaDAO(EM);
+		Pessoa pessoaSave = new Pessoa();
+		
+		JpaUtilTest.getInstancia().beginSession();
+		
+		dao.salvar(pessoaSave);
+		
+		JpaUtilTest.getInstancia().endSession();
+	}
+	
+	@Test
+	public void listarPessoaTest() {
+		
+		PessoaDAO dao = new PessoaDAO(EM);
+		
+		JpaUtilTest.getInstancia().beginSession();
+		
+		dao.listar();
+		
+		JpaUtilTest.getInstancia().endSession();	
+		
+	}
+	
+	@Test
+	public void listarProfessoresTest() {
+		
+		PessoaDAO dao = new PessoaDAO(EM);
+		
+		JpaUtilTest.getInstancia().beginSession();
+		
+		dao.listarProfessores();
+		
+		JpaUtilTest.getInstancia().endSession();	
+		
+	}
+	
+	@Test
+	public void buscarPorIdTest() {
+		
+		PessoaDAO dao = new PessoaDAO(EM);
+		
+		JpaUtilTest.getInstancia().beginSession();
+		
+		dao.buscarPorId(1l);
+		
+		JpaUtilTest.getInstancia().endSession();	
+		
+	}
+	
 	
 }
