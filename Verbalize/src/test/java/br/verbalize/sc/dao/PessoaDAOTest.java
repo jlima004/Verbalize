@@ -1,6 +1,7 @@
 package br.verbalize.sc.dao;
 
-import java.util.Date;
+
+import java.sql.SQLException;
 
 import javax.persistence.EntityManager;
 
@@ -8,6 +9,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.verbalize.sc.commons.JpaUtilTest;
@@ -18,7 +20,7 @@ import br.verbalize.sc.model.Pessoa;
 public class PessoaDAOTest {
 	private EntityManager EM;
 	
-	@AfterClass
+	@BeforeClass
 	public static void initClass() {
 		JpaUtilTest.getInstancia().initEntityManagerFactory();
 	}
@@ -49,21 +51,21 @@ public class PessoaDAOTest {
 		Assert.assertNull(EM);
 	}
 	
-	/*@Test
-	public void salvaPessoaTest() {
+	@Test
+	public void salvaPessoaTest() throws SQLException {
 		PessoaDAO dao = new PessoaDAO(EM);
-		Pessoa pessoaSave = new Pessoa(1l, "ROLE_ADMINISTRADOR", "João", "joao@joao.com.br", 
-				"123456abc", "rua joão da silva, 2424", "000.000.000-00", new Date(), null, null);
+		Pessoa pessoaSave = new Pessoa(1l, "Jefferson", "jlima004@gmail.com", "123456788912", "000000000000", "1234", "ROLE_ADMIN");
 		
 		JpaUtilTest.getInstancia().beginSession();
+		
 		dao.salvar(pessoaSave);
+		
 		JpaUtilTest.getInstancia().endSession();
 		
-		Pessoa pessoaRecuperada = dao.buscaPorEmail("joao@joao.com.br");
+		Pessoa pessoaRecuperada = dao.buscaPorEmail("jlima004@gmail.com");
 		
 		Assert.assertTrue(pessoaSave.equals(pessoaRecuperada));
-	}*/
-	
+	}
 	
 	
 }
