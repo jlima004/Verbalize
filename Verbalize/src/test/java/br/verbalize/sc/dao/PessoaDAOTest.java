@@ -68,9 +68,42 @@ public class PessoaDAOTest {
 	}
 	
 	@Test
+	public void buscarPorIdTest() {
+		
+		PessoaDAO dao = new PessoaDAO(EM);
+		
+		JpaUtilTest.getInstancia().beginSession();
+		
+		JpaUtilTest.getInstancia().endSession();
+		
+		Pessoa pessoaTest2 = dao.buscaPorEmail("jlima004@gmail.com");
+		
+		Pessoa pessoaTest1 = dao.buscarPorId(1l);
+		
+		Assert.assertTrue(pessoaTest1.equals(pessoaTest2));
+		
+	}
+	
+	/*@Test
+	public void salvaOutraPessoaTest() throws SQLException {
+		PessoaDAO dao = new PessoaDAO(EM);
+		Pessoa pessoaDois = new Pessoa(2l, "Outro", "jlima009@gmail.br", "12345658912", "0004540000", "2222", "ROLE_ADMIN");
+		
+		JpaUtilTest.getInstancia().beginSession();
+		
+		dao.salvar(pessoaDois);
+		
+		JpaUtilTest.getInstancia().endSession();
+		
+		Pessoa pessoaRecuperaDois = dao.buscaPorEmail("jlima009@gmail.br");
+		
+		Assert.assertTrue(pessoaDois.equals(pessoaRecuperaDois));
+	}*/
+	
+	@Test
 	public void salvaPessoaFalseTest() throws SQLException {
 		PessoaDAO dao = new PessoaDAO(EM);
-		Pessoa pessoaSave = new Pessoa(2l, "Moacir", "moacir@senai.com", "123456788912", "000000000000", "1234", "ROLE_ALUNO");
+		Pessoa pessoaSave = new Pessoa(3l, "Moacir", "moacir@senai.com", "123456788912", "000000000000", "1234", "ROLE_ALUNO");
 		
 		JpaUtilTest.getInstancia().beginSession();
 		
@@ -121,18 +154,29 @@ public class PessoaDAOTest {
 		
 	}
 	
+	
+	
+
 	@Test
-	public void buscarPorIdTest() {
+	public void excluirTest() {
 		
 		PessoaDAO dao = new PessoaDAO(EM);
 		
+		Pessoa pessoaTest1 = dao.buscarPorId(1l);
+		
 		JpaUtilTest.getInstancia().beginSession();
 		
-		dao.buscarPorId(1l);
+		/*dao.excluir(1L, pessoaTest1);*/
 		
-		JpaUtilTest.getInstancia().endSession();	
+		JpaUtilTest.getInstancia().endSession();
+		
+		Pessoa pessoaTest2 = dao.buscarPorId(1l);
+		
+		Assert.assertTrue(pessoaTest1.equals(pessoaTest2));
 		
 	}
+	
+	
 	
 	
 }
