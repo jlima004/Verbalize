@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 public abstract class MailUtil {
 	private static Session configurarSessao() {
 		Properties props = new Properties();
-		// Par‚metros de configuraÁ„o da conex„o com o Hotmail
+		// Par√¢metros de configura√ß√£o da conex√£o com o Hotmail
 		props.put("mail.transport.protocol", "smtp");
 		props.put("mail.smtp.host", "smtp.live.com");
 		props.put("mail.smtp.socketFactory.port", "587");
@@ -42,7 +42,7 @@ public abstract class MailUtil {
 
 			message.setText(mensagem);
 
-			// Aqui o e-mail È enviado
+			// Aqui o e-mail √© enviado
 			Transport.send(message);
 
 		} catch (MessagingException e) {

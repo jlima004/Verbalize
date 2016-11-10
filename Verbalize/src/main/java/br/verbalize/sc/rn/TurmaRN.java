@@ -11,10 +11,10 @@ public class TurmaRN {
  
 	public void salvar(Turma turma) throws IllegalArgumentException,Exception {
 		if(turma.getProfessor() == null) {
-			throw new IllegalArgumentException("… preciso selecionar um Professor");
+			throw new IllegalArgumentException("√© preciso selecionar um Professor");
 		}
 		if(!turma.getProfessor().getPerfil().equals(Perfil.ROLE_PROFESSOR.toString())){
-			throw new IllegalArgumentException("O usuario selecionado n„o È um professor um Professor");
+			throw new IllegalArgumentException("O usuario selecionado n√£o √° um professor um Professor");
 		}
 		
 		try {

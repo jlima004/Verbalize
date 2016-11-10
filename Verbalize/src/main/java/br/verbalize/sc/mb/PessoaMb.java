@@ -92,7 +92,7 @@ public class PessoaMb {
 		pessoaRN.excluir(pessoa);
 		listaPessoas.remove(pessoa);
 		pessoa = new Pessoa();
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usu·rio removido com sucesso!", "");
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usu√°rio removido com sucesso!", "");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return null;
 		
@@ -103,7 +103,7 @@ public class PessoaMb {
 	}
 	
 	public void gerarPdf(){
-		//caso nao carregue verificar anotaÁ„o da pagina
+		//caso nao carregue verificar anota√ß√£o da pagina
 		
 		
 		FacesContext context = FacesContext.getCurrentInstance();
