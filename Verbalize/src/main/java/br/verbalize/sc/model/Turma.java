@@ -31,6 +31,8 @@ public class Turma {
 	private List<Pessoa> alunosParaMatricular;
 	@OneToMany
 	private List<Arquivo> arquivosDaTurma;
+	@OneToMany
+	private List<Ensalamento> ensalamentos;
 
 	public Long getId() {
 		return id;
@@ -95,5 +97,15 @@ public class Turma {
 	public void setArquivosDaTurma(List<Arquivo> arquivosDaTurma) {
 		this.arquivosDaTurma = arquivosDaTurma;
 	}
+
+	public List<Ensalamento> getEnsalamentos() {
+		return ensalamentos;
+	}
+
+	public void setEnsalamentos(List<Ensalamento> ensalamentos) {
+		this.ensalamentos = ensalamentos;
+	}
+	
+	
 	
 }
