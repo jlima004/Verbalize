@@ -38,7 +38,7 @@ public class Pessoa {
 	@Column(nullable=false)
 	private Date dtNascimento;*/
 
-	@Column(nullable=false, length=14)
+	@Column(length=64)
 	private String senha;
 	
 	//@Enumerated(EnumType.STRING)

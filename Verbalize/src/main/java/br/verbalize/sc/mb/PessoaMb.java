@@ -25,6 +25,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import br.verbalize.sc.commons.Utils;
 import br.verbalize.sc.model.Pessoa;
 import br.verbalize.sc.rn.PessoaRN;
 
@@ -199,6 +200,8 @@ private PdfPCell createHeader(String titulo) {
 	
 	public String salvar() {
 		try {
+			String hash = Utils.senhaToSha256(pessoa.getSenha());
+			pessoa.setSenha(hash);
 			pessoaRN.salvar(pessoa);
 			listaPessoas = null;
 			return "/admin/pessoaList";

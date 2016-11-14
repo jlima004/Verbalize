@@ -16,12 +16,15 @@
 	</http>
 	
 	<b:bean id="customAuthenticationHandler" class="br.verbalize.sc.commons.CustomAuthenticationHandler" />
-
+	<b:bean id="customPasswordEncoder" class="br.verbalize.sc.commons.CustomPasswordEncoder"/>
+	
 	<!-- <user-service> <user name="user" password="password" authorities="ROLE_USER" 
 		/> </user-service> -->
 
 	<authentication-manager>
 		<authentication-provider>
+		<password-encoder ref="customPasswordEncoder"/>
+		<!-- <password-encoder hash="sha-256"/> -->
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="SELECT email, senha, 1 FROM
 					pessoa WHERE email=?"
