@@ -1,13 +1,16 @@
 package br.verbalize.sc.mb;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import br.verbalize.sc.commons.Utils;
 import br.verbalize.sc.model.Ensalamento;
 import br.verbalize.sc.rn.EnsalamentoRN;
 
@@ -81,6 +84,24 @@ public class EnsalamentoMB {
 		listaEnsalamentos.remove(ensalamento);
 		ensalamento = new Ensalamento();
 		return "";
+	}
+	
+	public void renderListaEnsalamentosJson() throws IOException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		
+		String key = externalContext.getRequestParameterMap().get("key");
+		
+		String json = "";
+		if (key != null && key.equals(Utils.KEY)) {
+			json = Utils.getGson().toJson(ensalamentoRN.listarEnsalamentoParaJson());
+		}
+		
+		externalContext.setResponseContentType("application/json");
+		externalContext.setResponseCharacterEncoding("UTF-8");
+		externalContext.getResponseOutputWriter().write(json);
+		context.responseComplete();
+		
 	}
 
 }

@@ -43,4 +43,8 @@ public class PessoaRN {
 		return DAOFactory.getPessoaDAO().buscaPorEmail(email);
 	}
 	
+	public Pessoa loginParaJson(String email, String senha) {
+		return DAOFactory.getPessoaDAO().loginParaJson(email, senha);
+	}
+	
 }

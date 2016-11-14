@@ -1,6 +1,7 @@
 package br.verbalize.sc.mb;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +28,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import br.verbalize.sc.commons.Utils;
+import br.verbalize.sc.json.LoginJson;
 import br.verbalize.sc.model.Pessoa;
 import br.verbalize.sc.rn.PessoaRN;
 
@@ -213,6 +216,34 @@ private PdfPCell createHeader(String titulo) {
 							.getMessage()));
 		}
 		return "index.xhtml";
+		
+		
+	}
+	
+	public void renderLoginJson() throws IOException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		
+		String email = externalContext.getRequestParameterMap().get("email");
+		String senha = externalContext.getRequestParameterMap().get("senha");
+		String key = externalContext.getRequestParameterMap().get("key");
+		
+		String json = "";
+		if (key != null && key.equals(Utils.KEY)) {
+			Pessoa p = pessoaRN.loginParaJson(email, senha);
+			if (p != null) {
+				LoginJson lj = new LoginJson();
+				lj.setNmPessoa(p.getNmPessoa());
+				lj.setSucesso(true);
+				lj.setPerfil("ROLE_USER");
+				json = Utils.getGson().toJson(lj);
+			}
+		}
+		
+		externalContext.setResponseContentType("application/json");
+		externalContext.setResponseCharacterEncoding("UTF-8");
+		externalContext.getResponseOutputWriter().write(json);
+		context.responseComplete();
 		
 		
 	}

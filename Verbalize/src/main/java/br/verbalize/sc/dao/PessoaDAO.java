@@ -48,5 +48,17 @@ public class PessoaDAO extends DAO<Pessoa> {
 			return null;
 		}
 	}
+	
+	public Pessoa loginParaJson(String email, String senha) {
+		Query query = getEM().createQuery("SELECT P FROM Pessoa p WHERE p.email = :email AND p.senha = :senha");
+		query.setParameter("email", email);
+		query.setParameter("senha", senha);
+		try {
+			return (Pessoa) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+		
+	}
 
 }
