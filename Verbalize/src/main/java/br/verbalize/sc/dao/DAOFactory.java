@@ -8,6 +8,7 @@ public class DAOFactory {
 	private static RespostaDAO respostaDAO;
 	private static AmbienteDAO ambienteDAO;
 	private static RegraDAO regraDAO;
+	private static EnsalamentoDAO ensalamentoDAO;
 	
 	public static TurmaDAO getTurmaDAO() {
 		if (turmaDAO == null) {
@@ -50,6 +51,14 @@ public class DAOFactory {
 	}
 		return regraDAO;
 	}
+
+	public static EnsalamentoDAO getEnsalamentoDAO() {
+		if (ensalamentoDAO == null) {
+			ensalamentoDAO = new EnsalamentoDAO();
+		}
+		return ensalamentoDAO;
+	}
+	
 	
 	
 	

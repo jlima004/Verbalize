@@ -22,11 +22,15 @@ public class Ensalamento {
 	private Date dia;
 	@Temporal(TemporalType.TIME)
 	@Column
-	private Date horario;
+	private Date inicio;
+	@Temporal(TemporalType.TIME)
+	@Column
+	private Date fim;
 	@ManyToOne
 	private Turma turma;
 	@ManyToOne
 	private Ambiente ambiente;
+	
 	
 	
 	public long getId() {
@@ -41,11 +45,17 @@ public class Ensalamento {
 	public void setDia(Date dia) {
 		this.dia = dia;
 	}
-	public Date getHorario() {
-		return horario;
+	public Date getInicio() {
+		return inicio;
 	}
-	public void setHorario(Date horario) {
-		this.horario = horario;
+	public void setInicio(Date inicio) {
+		this.inicio = inicio;
+	}
+	public Date getFim() {
+		return fim;
+	}
+	public void setFim(Date fim) {
+		this.fim = fim;
 	}
 	public Turma getTurma() {
 		return turma;
@@ -59,6 +69,8 @@ public class Ensalamento {
 	public void setAmbiente(Ambiente ambiente) {
 		this.ambiente = ambiente;
 	}
+	
+	
 	
 	
 	
