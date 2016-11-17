@@ -1,11 +1,11 @@
 package br.verbalize.sc.dao;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import br.verbalize.sc.commons.JpaUtil;
-
-import java.sql.SQLException;
-import java.util.List;
 
 public abstract class DAO<T> {
 	

@@ -34,6 +34,20 @@ public class Turma {
 	@OneToMany
 	private List<Ensalamento> ensalamentos;
 
+	public Turma() {
+		
+	}
+
+	public Turma(Long id, String nmTurma, Date dataDeInicio, Date dataDeConclusao, Float mensalidade, Pessoa professor) {
+		super();
+		this.id = id;
+		this.nmTurma = nmTurma;
+		this.dataDeInicio = dataDeInicio;
+		this.dataDeConclusao = dataDeConclusao;
+		this.mensalidade = mensalidade;
+		this.professor = professor;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -105,6 +119,81 @@ public class Turma {
 	public void setEnsalamentos(List<Ensalamento> ensalamentos) {
 		this.ensalamentos = ensalamentos;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((alunosParaMatricular == null) ? 0 : alunosParaMatricular.hashCode());
+		result = prime * result + ((arquivosDaTurma == null) ? 0 : arquivosDaTurma.hashCode());
+		result = prime * result + ((dataDeConclusao == null) ? 0 : dataDeConclusao.hashCode());
+		result = prime * result + ((dataDeInicio == null) ? 0 : dataDeInicio.hashCode());
+		result = prime * result + ((ensalamentos == null) ? 0 : ensalamentos.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((mensalidade == null) ? 0 : mensalidade.hashCode());
+		result = prime * result + ((nmTurma == null) ? 0 : nmTurma.hashCode());
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Turma other = (Turma) obj;
+		if (alunosParaMatricular == null) {
+			if (other.alunosParaMatricular != null)
+				return false;
+		} else if (!alunosParaMatricular.equals(other.alunosParaMatricular))
+			return false;
+		if (arquivosDaTurma == null) {
+			if (other.arquivosDaTurma != null)
+				return false;
+		} else if (!arquivosDaTurma.equals(other.arquivosDaTurma))
+			return false;
+		if (dataDeConclusao == null) {
+			if (other.dataDeConclusao != null)
+				return false;
+		} else if (!dataDeConclusao.equals(other.dataDeConclusao))
+			return false;
+		if (dataDeInicio == null) {
+			if (other.dataDeInicio != null)
+				return false;
+		} else if (!dataDeInicio.equals(other.dataDeInicio))
+			return false;
+		if (ensalamentos == null) {
+			if (other.ensalamentos != null)
+				return false;
+		} else if (!ensalamentos.equals(other.ensalamentos))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (mensalidade == null) {
+			if (other.mensalidade != null)
+				return false;
+		} else if (!mensalidade.equals(other.mensalidade))
+			return false;
+		if (nmTurma == null) {
+			if (other.nmTurma != null)
+				return false;
+		} else if (!nmTurma.equals(other.nmTurma))
+			return false;
+		if (professor == null) {
+			if (other.professor != null)
+				return false;
+		} else if (!professor.equals(other.professor))
+			return false;
+		return true;
+	}
+	
+	
 	
 	
 	
