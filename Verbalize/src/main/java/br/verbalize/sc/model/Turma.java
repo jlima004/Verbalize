@@ -31,8 +31,7 @@ public class Turma {
 	private List<Pessoa> alunosParaMatricular;
 	@OneToMany
 	private List<Arquivo> arquivosDaTurma;
-	@OneToMany
-	private List<Ensalamento> ensalamentos;
+	
 
 	public Turma() {
 		
@@ -112,13 +111,6 @@ public class Turma {
 		this.arquivosDaTurma = arquivosDaTurma;
 	}
 
-	public List<Ensalamento> getEnsalamentos() {
-		return ensalamentos;
-	}
-
-	public void setEnsalamentos(List<Ensalamento> ensalamentos) {
-		this.ensalamentos = ensalamentos;
-	}
 
 	@Override
 	public int hashCode() {
@@ -128,7 +120,6 @@ public class Turma {
 		result = prime * result + ((arquivosDaTurma == null) ? 0 : arquivosDaTurma.hashCode());
 		result = prime * result + ((dataDeConclusao == null) ? 0 : dataDeConclusao.hashCode());
 		result = prime * result + ((dataDeInicio == null) ? 0 : dataDeInicio.hashCode());
-		result = prime * result + ((ensalamentos == null) ? 0 : ensalamentos.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((mensalidade == null) ? 0 : mensalidade.hashCode());
 		result = prime * result + ((nmTurma == null) ? 0 : nmTurma.hashCode());
@@ -164,11 +155,6 @@ public class Turma {
 			if (other.dataDeInicio != null)
 				return false;
 		} else if (!dataDeInicio.equals(other.dataDeInicio))
-			return false;
-		if (ensalamentos == null) {
-			if (other.ensalamentos != null)
-				return false;
-		} else if (!ensalamentos.equals(other.ensalamentos))
 			return false;
 		if (id == null) {
 			if (other.id != null)

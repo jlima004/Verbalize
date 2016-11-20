@@ -14,18 +14,16 @@ public class TurmaConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext facesContext,
 			UIComponent uiComponent, String valor) {
-		Long id = Long.parseLong(valor);
-
-		TurmaRN rn = new TurmaRN();
-
-		return rn.buscarPorId(id);
+		TurmaRN turmaRN = new TurmaRN();
+		long id = Long.parseLong(valor);
+		return turmaRN.buscarPorId(id);
 	}
 
 	@Override
 	public String getAsString(FacesContext facesContext,
 			UIComponent uiComponent, Object valor) {
 		Turma turma = (Turma) valor;
-		return turma.getId().toString();
+		return String.valueOf(turma.getId());
 	}
 
 }
