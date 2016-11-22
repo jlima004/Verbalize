@@ -1,8 +1,8 @@
 package br.verbalize.sc.mb;
 
-import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
-import java.io.OutputStream;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,23 +13,12 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
-import javax.servlet.http.HttpServletResponse;
-
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 
 import br.verbalize.sc.commons.Utils;
 import br.verbalize.sc.json.LoginJson;
+import br.verbalize.sc.model.Agenda;
 import br.verbalize.sc.model.Pessoa;
+import br.verbalize.sc.rn.EnsalamentoRN;
 import br.verbalize.sc.rn.PessoaRN;
 
 @ManagedBean
@@ -37,6 +26,7 @@ import br.verbalize.sc.rn.PessoaRN;
 public class PessoaMb {
 	private Pessoa pessoa;
 	private PessoaRN pessoaRN;
+	private EnsalamentoRN ensalamentoRN;
 	private Long editarId;
 	private List<Pessoa> listaPessoas;
 	private List<Pessoa> listaProfessores;
@@ -45,6 +35,7 @@ public class PessoaMb {
 	public void depoisDeConstruir() {
 		pessoa = new Pessoa();
 		pessoaRN = new PessoaRN();
+		ensalamentoRN = new EnsalamentoRN();
 	}
 	
 
@@ -84,6 +75,23 @@ public class PessoaMb {
 		this.listaPessoas = listaPessoas;
 	}
 	
+	
+	public EnsalamentoRN getEnsalamentoRN() {
+		return ensalamentoRN;
+	}
+
+
+	public void setEnsalamentoRN(EnsalamentoRN ensalamentoRN) {
+		this.ensalamentoRN = ensalamentoRN;
+	}
+
+
+	public List<Agenda> retornaAgenda(Pessoa pessoa) {
+		long id = pessoa.getId();
+		return ensalamentoRN.retornaAgenda(id);
+	}
+
+
 	public void carregarPessoa(ComponentSystemEvent event) {
 		if(editarId == null) {
 			return ;
@@ -101,6 +109,10 @@ public class PessoaMb {
 		return null;
 		
 	}
+	
+	
+	
+	
 	
 	public String editar() {
 		return "/admin/pessoaForm.xhtml";

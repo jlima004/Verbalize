@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.verbalize.sc.dao.DAOFactory;
 import br.verbalize.sc.json.EnsalamentoJson;
+import br.verbalize.sc.model.Agenda;
 import br.verbalize.sc.model.Ensalamento;
 
 public class EnsalamentoRN {
@@ -29,6 +30,11 @@ public class EnsalamentoRN {
 	public void excluir(Ensalamento ensalamento) {
 		DAOFactory.getEnsalamentoDAO().excluir(ensalamento.getId(), ensalamento);
 	}
+	
+	public List<Agenda> retornaAgenda(long aluno) {
+		return DAOFactory.getEnsalamentoDAO().retornaAgenda(aluno);
+	}
+	
 	
 	public List<EnsalamentoJson> listarEnsalamentoParaJson() {
 		List<EnsalamentoJson> ensalamentosJson = new ArrayList<EnsalamentoJson>();
