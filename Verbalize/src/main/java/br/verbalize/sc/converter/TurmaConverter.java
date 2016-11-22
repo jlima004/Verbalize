@@ -23,7 +23,7 @@ public class TurmaConverter implements Converter {
 	public String getAsString(FacesContext facesContext,
 			UIComponent uiComponent, Object valor) {
 		Turma turma = (Turma) valor;
-		return String.valueOf(turma.getId());
+		return turma.getId().toString();
 	}
 
 }
