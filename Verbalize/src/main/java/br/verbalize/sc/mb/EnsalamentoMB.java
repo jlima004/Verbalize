@@ -62,7 +62,7 @@ public class EnsalamentoMB {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ensalamento cadastrado com sucesso!",
 					"");
 			FacesContext.getCurrentInstance().addMessage(null, message);
-			return "";
+			return "/admin/listarEnsalamentos";
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -102,6 +102,11 @@ public class EnsalamentoMB {
 		externalContext.getResponseOutputWriter().write(json);
 		context.responseComplete();
 		
+	}
+	
+	public String novo() {
+		ensalamento = new Ensalamento();
+		return "/admin/cadastroEnsalamento";
 	}
 
 }

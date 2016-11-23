@@ -22,16 +22,16 @@ public class EnsalamentoDAO extends DAO<Ensalamento> {
 	}
 	
 	public List<Agenda> retornaAgenda( long aluno) {
-		Query query = getEM().createNativeQuery("SELECT p.nmPessoa, e.dia, e.inicio, e.fim, a.nome AS ambiente"
-				+"FROM pessoa AS p"
-				+"INNER JOIN turma_pessoa as tp"
-				+"ON p.id=tp.alunosParaMatricular_id"
-				+"INNER JOIN turma AS t"
-				+"ON t.id=tp.Turma_id"
-				+"INNER JOIN ensalamento AS e"
-				+"ON e.turma_id=t.id"
-				+"INNER JOIN ambiente AS a"
-				+"ON a.id=e.ambiente_id"
+		Query query = getEM().createNativeQuery("SELECT p.nmPessoa, e.dia, e.inicio, e.fim, a.nome AS ambiente "
+				+"FROM pessoa AS p "
+				+"INNER JOIN turma_pessoa as tp "
+				+"ON p.id=tp.alunosParaMatricular_id "
+				+"INNER JOIN turma AS t "
+				+"ON t.id=tp.Turma_id "
+				+"INNER JOIN ensalamento AS e "
+				+"ON e.turma_id=t.id "
+				+"INNER JOIN ambiente AS a "
+				+"ON a.id=e.ambiente_id "
 				+"WHERE p.id = :aluno");
 		query.setParameter("aluno", aluno);
 		List<Object[]> vetor = query.getResultList();

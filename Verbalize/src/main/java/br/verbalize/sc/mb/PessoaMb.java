@@ -86,9 +86,8 @@ public class PessoaMb {
 	}
 
 
-	public List<Agenda> retornaAgenda(Pessoa pessoa) {
-		long id = pessoa.getId();
-		return ensalamentoRN.retornaAgenda(id);
+	public List<Agenda> retornaAgenda(long pessoa) {
+		return ensalamentoRN.retornaAgenda(pessoa);
 	}
 
 
