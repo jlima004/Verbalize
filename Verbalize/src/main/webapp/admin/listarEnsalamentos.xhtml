@@ -128,34 +128,34 @@ a.btn.btn-default {
 
 		<h:form>
 
-			<p:dataTable id="tabela-ensalamentos" value="#{ensalamentoMB.listaEnsalamentos}"
-				var="ensalamento">
-				
+			<p:dataTable id="tabela-ensalamentos"
+				value="#{ensalamentoMB.listaEnsalamentos}" var="ensalamento">
+
 				<f:facet name="header">
 					<p:commandButton action="#{ensalamentoMB.novo}"
 						value="Novo Ensalamento" />
 				</f:facet>
-				
+
 				<p:column headerText="Turma">
 					<h:outputText value="#{ensalamento.turma.nmTurma}" />
 				</p:column>
-				
+
 				<p:column headerText="Dia">
 					<h:outputText value="#{ensalamento.dia}" />
 				</p:column>
-				
+
 				<p:column headerText="Início">
 					<h:outputText value="#{ensalamento.inicio}" />
 				</p:column>
-				
+
 				<p:column headerText="Fim">
 					<h:outputText value="#{ensalamento.fim}" />
 				</p:column>
-				
+
 				<p:column headerText="Ambiente">
 					<h:outputText value="#{ensalamento.ambiente.nome}" />
 				</p:column>
-				
+
 				<p:column>
 					<p:commandButton action="#{ensalamentoMB.editar}"
 						icon="ui-icon-pencil" title="Editar">
@@ -168,10 +168,13 @@ a.btn.btn-default {
 							target="#{ensalamentoMB.ensalamento}" />
 					</p:commandButton>
 				</p:column>
-				
+
+
 			</p:dataTable>
 			
+
 		</h:form>
+	</div>
 
 	<!-- Rodapé -->
 	<footer class="container-fluid text-center">

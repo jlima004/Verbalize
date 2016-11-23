@@ -475,26 +475,31 @@ li.active span.round-tabs.five {
 									<h:form>
 
 										<p:dataTable id="tabela-agendas"
-											value="#{pessoaMb.retornaAgenda(loginManager.pessoa.id)}" var="agenda">
-											
+											value="#{pessoaMb.retornaAgenda(loginManager.pessoa.id)}"
+											var="agenda">
+
 											<p:column headerText="Dia">
 												<h:outputText value="#{agenda.dia}" />
 											</p:column>
-											
+
 											<p:column headerText="Início">
 												<h:outputText value="#{agenda.inicio}" />
 											</p:column>
-											
+
 											<p:column headerText="Fim">
 												<h:outputText value="#{agenda.fim}" />
 											</p:column>
-											
+
 											<p:column headerText="Ambiente">
 												<h:outputText value="#{agenda.ambiente}" />
 											</p:column>
 
 
 										</p:dataTable>
+										<div>
+											<p:commandLink value="Gerar PDF" action="#{pdfMB.gerarPdf()}"
+												ajax="false" target="_blank" />
+										</div>
 
 									</h:form>
 

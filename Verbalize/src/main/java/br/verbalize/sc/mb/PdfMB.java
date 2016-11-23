@@ -20,7 +20,9 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import br.verbalize.sc.model.Ensalamento;
 import br.verbalize.sc.model.Pessoa;
+import br.verbalize.sc.rn.EnsalamentoRN;
 import br.verbalize.sc.rn.PessoaRN;
 
 
@@ -45,22 +47,31 @@ public class PdfMB {
 			
 			document.open();
 			
-			document.add(new Paragraph("Escrevendo em um pdf!"));
+			document.add(new Paragraph("Agenda"));
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
 			
-			PessoaRN pessoaRN = new PessoaRN();
-			List<Pessoa> pessoas = pessoaRN.listar();
+			EnsalamentoRN ensalamentoRN = new EnsalamentoRN();
+			List<Ensalamento> ensalamentos = ensalamentoRN.listar();
 			
-			PdfPTable table = new PdfPTable(2);
+			PdfPTable table = new PdfPTable(5);
 			
-			table.addCell(createHeader("Nome"));
-			table.addCell(createHeader("CPF"));
+			table.addCell(createHeader("Dia"));
+			table.addCell(createHeader("Inicio"));
+			table.addCell(createHeader("Fim"));
+			table.addCell(createHeader("Turma"));
+			table.addCell(createHeader("Ambiente"));
 			
 			BaseColor color = BaseColor.GRAY;
-			for (Pessoa u : pessoas) {
-				table.addCell(createBody(u.getNmPessoa(), color));
-				table.addCell(createBody(u.getNuCpf(), color));
+			for (Ensalamento u : ensalamentos) {
+				table.addCell(createBody(u.getDia().toString(), color));
+				table.addCell(createBody(u.getInicio().toString(), color));
+				table.addCell(createBody(u.getFim().toString(), color));
+				table.addCell(createBody(u.getTurma().getNmTurma(), color));
+				table.addCell(createBody(u.getAmbiente().getNome(), color));
 				if (color.equals(BaseColor.GRAY)) {
 					color = BaseColor.LIGHT_GRAY;
 				} else {
