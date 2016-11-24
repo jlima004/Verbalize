@@ -402,8 +402,8 @@ li.active span.round-tabs.five {
 								</a></li>
 
 								<li><a href="#financeiro" data-toggle="tab"
-									title="Financeiro"> <span class="round-tabs five"> <i
-											class="glyphicon glyphicon-usd"></i>
+									title="Agenda"> <span class="round-tabs five"> <i
+											class="glyphicon glyphicon-book"></i>
 									</span>
 								</a></li>
 
@@ -466,13 +466,13 @@ li.active span.round-tabs.five {
 							</div>
 							<div class="tab-pane fade" id="financeiro">
 								<center>
-									<h3>Financeiro</h3>
+									<h3>Agenda</h3>
 								</center>
 
 								<div class="container"
 									style="margin-top: 40px; margin-bottom: 60px;">
 
-									<h:form>
+									<h:form style="max-width: 77%;">
 
 										<p:dataTable id="tabela-agendas"
 											value="#{pessoaMb.retornaAgenda(loginManager.pessoa.id)}"
